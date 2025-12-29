@@ -27,6 +27,41 @@ int main() {
     FreeVec(vec, VEC_INT);
 }
 ```
+## Build
+
+```bash
+git clone https://github.com/VxidDev/c-vect.git
+cd c-vect
+make          # Build libvectors.a
+make install  # Install system-wide
+```
+
+### Build Targets
+| Command      | Does                       |
+| ------------ | -------------------------- |
+| make         | Build libvectors.a         |
+| make clean   | Delete build files         |
+| make install | Install to /usr/local/     |
+| make format  | Format code (clang-format) |
+| make check   | Static analysis (cppcheck) |
+
+Using the Library
+1. System-wide (after make install)
+```C
+#include <vectors.h>  // Standard include!
+
+int main() {
+    void* vec = InitVec(VEC_INT);
+    AppendVec(vec, &(int){42}, VEC_INT);
+    FreeVec(vec, VEC_INT);
+    return 0;
+}
+```
+```bash
+gcc main.c -lvectors -o app
+./app
+```
+
 ## API
 
 | Function                                                 | Usage                                 | Description                                                     |
