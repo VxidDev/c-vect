@@ -1,4 +1,4 @@
-#include "vectors.h"
+#include <vectors.h>
 
 int main(int argc, char **argv) {
     struct IntVec *Vector = (struct IntVec*)InitVec(VEC_INT);
