@@ -1,6 +1,7 @@
 #pragma once
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 enum VecType { VEC_CHAR , VEC_STRING , VEC_INT , VEC_FLOAT };
 
@@ -231,6 +232,214 @@ static inline void FreeVec(void* vec , enum VecType type) {
             free(vec);
 
             break;
+        }
+    }
+}
+
+static inline void* LastVec(void* vec , enum VecType type) {
+    switch (type) {
+        case VEC_INT: {
+            struct IntVec* Vec = (struct IntVec*)vec;
+
+            if (Vec->size == 0) {
+                return NULL;
+            }
+
+            return (void*)&Vec->vec[Vec->size - 1];
+        }
+        case VEC_CHAR: {
+            struct CharVec* Vec = (struct CharVec*)vec;
+
+            if (Vec->size == 0) {
+                return NULL;
+            }
+
+            return (void*)&Vec->vec[Vec->size - 1];
+        }
+        case VEC_FLOAT: {
+            struct FloatVec* Vec = (struct FloatVec*)vec;
+
+            if (Vec->size == 0) {
+                return NULL;
+            }
+
+            return (void*)&Vec->vec[Vec->size - 1];
+        }
+        case VEC_STRING: {
+            struct StrVec* Vec = (struct StrVec*)vec;
+
+            if (Vec->size == 0) {
+                return NULL;
+            }
+
+            return (void*)&Vec->vec[Vec->size - 1];
+        }
+    }
+}
+
+static inline void* PopVec(void* vec , enum VecType type) {
+    switch (type) {
+        case VEC_INT: {
+            struct IntVec* vec = (struct IntVec*)vec;
+
+            if (vec->size == 0) {
+                printf("Vector's size is 0.\n");
+                return NULL;
+            }
+
+            vec->size--;
+
+            return LastVec(vec, VEC_INT);
+        }
+        case VEC_FLOAT: {
+            struct FloatVec* vec = (struct FloatVec*)vec;
+
+            if (vec->size == 0) {
+                printf("Vector's size is 0.\n");
+                return NULL;
+            }
+
+            vec->size--;
+
+            return LastVec(vec, VEC_FLOAT);
+        }
+        case VEC_CHAR: {
+            struct CharVec* vec = (struct CharVec*)vec;
+
+            if (vec->size == 0) {
+                printf("Vector's size is 0.\n");
+                return NULL;
+            }
+
+            vec->size--;
+
+            return LastVec(vec, VEC_CHAR);
+        }
+        case VEC_STRING: {
+            struct StrVec* vec = (struct StrVec*)vec;
+
+            if (vec->size == 0) {
+                printf("Vector's size is 0.\n");
+                return NULL;
+            }
+
+            vec->size--;
+
+            return LastVec(vec , VEC_STRING);
+        }
+    }
+}
+
+static inline bool RemoveFromVec(void* vec , size_t index , enum VecType type) {
+    switch (type) {
+        case VEC_INT: {
+            struct IntVec* Vec = (struct IntVec*)vec;
+
+            if (Vec->size == 0 || index >= Vec->size) {
+                printf("Index (%zu) out of vector's range.\n" , index);
+                return false;
+            }
+
+            for (size_t i = index; i < Vec->size - 1; i++) {
+                Vec->vec[i] = Vec->vec[i + 1];
+            }
+
+            Vec->size--;
+
+            return true;
+        }
+        case VEC_CHAR: {
+            struct CharVec* Vec = (struct CharVec*)vec;
+
+            if (Vec->size == 0 || index >= Vec->size) {
+                printf("Index (%zu) out of vector's range.\n" , index);
+                return false;
+            }
+
+            for (size_t i = index; i < Vec->size - 1; i++) {
+                Vec->vec[i] = Vec->vec[i + 1];
+            }
+
+            Vec->size--;
+
+            return true;
+        }
+        case VEC_FLOAT: {
+            struct FloatVec* Vec = (struct FloatVec*)vec;
+
+            if (Vec->size == 0 || index >= Vec->size) {
+                printf("Index (%zu) out of vector's range.\n" , index);
+                return false;
+            }
+
+            for (size_t i = index; i < Vec->size - 1; i++) {
+                Vec->vec[i] = Vec->vec[i + 1];
+            }
+
+            Vec->size--;
+
+            return true;
+        }
+        case VEC_STRING: {
+            struct StrVec* Vec = (struct StrVec*)vec;
+
+            if (Vec->size == 0 || index >= Vec->size) {
+                printf("Index (%zu) out of vector's range.\n" , index);
+                return false;
+            }
+
+            for (size_t i = index; i < Vec->size - 1; i++) {
+                Vec->vec[i] = Vec->vec[i + 1];
+            }
+
+            Vec->size--;
+
+            return true;
+        }
+    }
+}
+
+static inline void* GetItemFromVec(void* vec , size_t index , enum VecType type) {
+    switch (type) {
+        case VEC_INT: {
+            struct IntVec* Vec = (struct IntVec*)vec;
+
+            if (Vec->size == 0 || index >= Vec->size) {
+                printf("Index (%zu) out of vector's range.\n" , index);
+                return NULL;
+            } 
+
+            return (void*)&Vec->vec[index];
+        }
+        case VEC_FLOAT: {
+            struct FloatVec* Vec = (struct FloatVec*)vec;
+
+            if (Vec->size == 0 || index >= Vec->size) {
+                printf("Index (%zu) out of vector's range.\n" , index);
+                return NULL;
+            } 
+
+            return (void*)&Vec->vec[index];
+        }
+        case VEC_CHAR: {
+            struct CharVec* Vec = (struct CharVec*)vec;
+
+            if (Vec->size == 0 || index >= Vec->size) {
+                printf("Index (%zu) out of vector's range.\n" , index);
+                return NULL;
+            } 
+
+            return (void*)&Vec->vec[index];
+        }
+        case VEC_STRING: {
+            struct StrVec* Vec = (struct StrVec*)vec;
+
+            if (Vec->size == 0 || index >= Vec->size) {
+                printf("Index (%zu) out of vector's range.\n" , index);
+                return NULL;
+            } 
+
+            return (void*)&Vec->vec[index];
         }
     }
 }
