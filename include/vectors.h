@@ -17,3 +17,5 @@ void* GetLastVec(void* vec , enum VecType type);
 void* PopVec(void* vec , enum VecType type);
 bool RemoveFromVec(void* vec , size_t index , enum VecType type);
 void* GetItemFromVec(void* vec , size_t index , enum VecType type);
+void ClearVec(void* vec , enum VecType type);
+bool ResetVec(void* vec , enum VecType type);

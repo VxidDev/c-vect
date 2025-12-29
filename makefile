@@ -12,7 +12,9 @@ SRCS = src/InitVec.c \
        src/GetLastVec.c \
        src/GetItemFromVec.c \
        src/PopVec.c \
-       src/RemoveFromVec.c
+       src/RemoveFromVec.c \
+	   src/ClearVec.c \
+	   src/ResetVec.c 
 
 OBJS = $(SRCS:.c=.o)
 
