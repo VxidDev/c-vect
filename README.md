@@ -7,7 +7,6 @@ Features
    - ✅ Auto-grow: capacity *= 2 (starts at 16)
    - ✅ Zero-init: calloc() safety
    - ✅ Leak-proof: FreeVec() double-free protection
-   - ✅ Single header: Drop-in vectors.h
 
 ## Quick Start
 ```C
