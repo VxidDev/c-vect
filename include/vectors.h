@@ -10,7 +10,7 @@ enum VecType { VEC_CHAR , VEC_STRING , VEC_INT , VEC_FLOAT };
 #include "IntVec.h"
 #include "StrVec.h"
 
-void* InitVec(enum VecType type);
+void* InitVec(enum VecType type, void* arr , void* arrlen);
 void AppendVec(void* vec , void* item , enum VecType type);
 void FreeVec(void* vec , enum VecType type);
 void* GetLastVec(void* vec , enum VecType type);
@@ -19,3 +19,6 @@ bool RemoveFromVec(void* vec , size_t index , enum VecType type);
 void* GetItemFromVec(void* vec , size_t index , enum VecType type);
 void ClearVec(void* vec , enum VecType type);
 bool ResetVec(void* vec , enum VecType type);
+bool ShrinkToFitVec(void* vec , enum VecType type);
+bool ShrinkVec(void* vec , size_t size , enum VecType type);
+bool ExtendVec(void* vec , size_t size , enum VecType type);

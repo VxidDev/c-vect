@@ -1,8 +1,10 @@
 #include "../include/vectors.h"
+#include <stddef.h>
 
-void* InitVec(enum VecType type) {
+void* InitVec(enum VecType type , void* arr , void* arrlen) {
     switch (type) {
         case VEC_INT: {
+
             struct IntVec* vec = (struct IntVec*)calloc(1 , sizeof(struct IntVec));
 
             if (!vec) {
@@ -19,6 +21,24 @@ void* InitVec(enum VecType type) {
             }
 
             vec->capacity = 16;
+
+            // printf("Initialized basic vector.\n");
+
+            if (arr != NULL && arrlen != NULL) {
+                int* Array = (int*)arr;
+                size_t len = *(int*)arrlen;
+
+                // printf("Prepared void* args for work.\n");
+
+                for (size_t i = 0; i < len; i++) {
+                    AppendVec(vec, (int*)&Array[i], VEC_INT);    
+                }
+
+                if (vec->size != len) {
+                    printf("Failed to initialize vector.\n");
+                    return NULL;
+                }
+            }
 
             return vec;
         }
@@ -42,6 +62,24 @@ void* InitVec(enum VecType type) {
 
             vec->capacity = 16;
 
+            // printf("Initialized basic vector.\n");
+
+            if (arr != NULL && arrlen != NULL) {
+                float* Array = (float*)arr;
+                size_t len = *(int*)arrlen;
+
+                // printf("Prepared void* args for work.\n");
+
+                for (size_t i = 0; i < len; i++) {
+                    AppendVec(vec, (float*)&Array[i], VEC_INT);    
+                }
+
+                if (vec->size != len) {
+                    printf("Failed to initialize vector.\n");
+                    return NULL;
+                }
+            }
+
             return vec;
         }
 
@@ -64,6 +102,24 @@ void* InitVec(enum VecType type) {
 
             vec->capacity = 16;
 
+            // printf("Initialized basic vector.\n");
+
+            if (arr != NULL && arrlen != NULL) {
+                char** Array = (char**)arr;
+                size_t len = *(int*)arrlen;
+
+                // printf("Prepared void* args for work.\n");
+
+                for (size_t i = 0; i < len; i++) {
+                    AppendVec(vec, (char**)&Array[i], VEC_INT);    
+                }
+
+                if (vec->size != len) {
+                    printf("Failed to initialize vector.\n");
+                    return NULL;
+                }
+            }
+
             return vec;
         }
 
@@ -85,6 +141,24 @@ void* InitVec(enum VecType type) {
             }
 
             vec->capacity = 16;
+
+            // printf("Initialized basic vector.\n");
+
+            if (arr != NULL && arrlen != NULL) {
+                char* Array = (char*)arr;
+                size_t len = *(int*)arrlen;
+
+                // printf("Prepared void* args for work.\n");
+
+                for (size_t i = 0; i < len; i++) {
+                    AppendVec(vec, (char*)&Array[i], VEC_INT);    
+                }
+
+                if (vec->size != len) {
+                    printf("Failed to initialize vector.\n");
+                    return NULL;
+                }
+            }
 
             return vec;
         }
