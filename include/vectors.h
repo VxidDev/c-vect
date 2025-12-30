@@ -1,4 +1,5 @@
 #pragma once
+#include <stddef.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
@@ -22,3 +23,5 @@ bool ResetVec(void* vec , enum VecType type);
 bool ShrinkToFitVec(void* vec , enum VecType type);
 bool ShrinkVec(void* vec , size_t size , enum VecType type);
 bool ExtendVec(void* vec , size_t size , enum VecType type);
+ptrdiff_t GetSizeVec(void* vec , enum VecType type);
+ptrdiff_t GetCapacityVec(void* vec , enum VecType type);

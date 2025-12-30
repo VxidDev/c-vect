@@ -17,7 +17,9 @@ SRCS = src/InitVec.c \
 	   src/ResetVec.c \
 	   src/ShrinkToFitVec.c \
 	   src/ShrinkVec.c \
-	   src/ExtendVec.c
+	   src/ExtendVec.c \
+	   src/GetSizeVec.c \
+	   src/GetCapacityVec.c
 
 OBJS = $(SRCS:.c=.o)
 
