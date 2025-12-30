@@ -11,21 +11,36 @@ Features
 
 ## Quick Start
 ```C
-#include "vectors.h"
+#include <vectors.h>
 
 int main() {
-    // Create
-    struct IntVec* vec = InitVec(VEC_INT);
+    struct IntVec* vec = InitVec(VEC_INT, NULL , NULL);
+    if (!vec) return 1;
     
-    // Append
-    AppendVec(vec, &(int){123}, VEC_INT);
+    // Add elements
+    for (int i = 0; i < 20; i++) {
+        AppendVec(vec, &(int){i}, VEC_INT);
+    }
     
-    // Use
-    printf("Value: %d\n", vec->vec[0]);  // 67
+    printf("Size: %zu, Capacity: %zu\n", 
+           vec->size, 
+           vec->capacity);
     
-    // Free (2 allocations)
+    // Access & modify
+    int* last = GetLastVec(vec, VEC_INT);
+    if (last) *last = 999;
+    
+    // Iterate safely
+    for (size_t i = 0; i < SizeVec(vec, VEC_INT); i++) {
+        int* item = GetItemFromVec(vec, i, VEC_INT);
+        if (item) printf("%d ", *item);
+    }
+    printf("\n");
+    
     FreeVec(vec, VEC_INT);
+    return 0;
 }
+
 ```
 ## Build
 
@@ -64,15 +79,20 @@ gcc main.c -lvectors -o app
 
 ## API
 
-| Function                                                 | Usage                                 | Description                                                     |
-| -------------------------------------------------------- | ------------------------------------- | --------------------------------------------------------------- |
-| InitVec(enum VecType type)                               | vec = InitVec(VEC_INT)                | Create new vector (capacity=16)                                 |
-| AppendVec(void* vec, void* item, enum VecType type)      | AppendVec(vec, &value, VEC_INT)       | Add item (auto-resizes x2)                                      |
-| FreeVec(void* vec, enum VecType type)                    | FreeVec(vec, VEC_INT)                 | Cleanup memory                                                  |
-| GetLastVec(void* vec, enum VecType type)                 | ptr = LastVec(vec, VEC_INT)        | Get pointer to last element (NULL if empty)                        |
-| GetItemFromVec(void* vec, size_t idx, enum VecType type) | ptr = GetItemFromVec(vec, 2, VEC_INT) | Get pointer to element at index (NULL if invalid)               |
-| PopVec(void* vec, enum VecType type)                     | PopVec(vec, VEC_INT)                  | Remove last element                                             |
-| PopAtIndex(void* vec, size_t idx, enum VecType type)     | PopAtIndex(vec, 2, VEC_INT)           | Remove element at index (shifts left)                           |
+| Function                                                   | Usage                                 | Description                                                                                                                                |
+| ---------------------------------------------------------- | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------|
+| InitVec(enum VecType type, void arr, void arrlen)**        | vec = InitVec(VEC_INT, arr, &arrlen)  | Initialize a new vector with optional source array and length. If arr and arrlen is NULL, creates an empty vector (default capacity = 16). |
+| AppendVec(void vec, void item, enum VecType type)**        | AppendVec(vec, &value, VEC_INT)       | Append an element to the end of the vector. Automatically resizes (×2) as needed.                                                          |
+| FreeVec(void vec, enum VecType type)*                      | FreeVec(vec, VEC_INT)                 | Free all allocated memory associated with the vector.                                                                                      |
+| GetLastVec(void vec, enum VecType type)*                   | ptr = GetLastVec(vec, VEC_INT)        | Get a pointer to the last element, or NULL if the vector is empty.                                                                         |
+| PopVec(void vec, enum VecType type)*                       | ptr = PopVec(vec, VEC_INT)            | Remove and return a pointer to the last element. Returns NULL if the vector is empty.                                                      |
+| RemoveFromVec(void vec, size_t index, enum VecType type)*  | ok = RemoveFromVec(vec, 2, VEC_INT)   | Remove element at a given index (shifts left). Returns true if successful.                                                                 |
+| GetItemFromVec(void vec, size_t index, enum VecType type)* | ptr = GetItemFromVec(vec, 2, VEC_INT) | Return a pointer to the element at index, or NULL if invalid.                                                                              |
+| ClearVec(void vec, enum VecType type)*                     | ClearVec(vec, VEC_INT)                | Clear all elements but keep allocated memory (capacity unchanged, size = 0).                                                               |
+| ResetVec(void vec, enum VecType type)*                     | ResetVec(vec, VEC_INT)                | Reset vector to its initial empty state (capacity reset to default, e.g., 16). Returns true if successful.                                 |
+| ShrinkToFitVec(void vec, enum VecType type)*               | ShrinkToFitVec(vec, VEC_INT)          | Shrink capacity to match the current number of elements. Frees unused memory. Returns true if reallocation succeeded.                      |
+| ShrinkVec(void vec, size_t size, enum VecType type)*       | ShrinkVec(vec, 8, VEC_INT)            | Reduce vector capacity to the specified new size (if smaller than current capacity). Returns true if successful.                           |
+| ExtendVec(void vec, size_t size, enum VecType type)*       | ExtendVec(vec, 64, VEC_INT)           | Increase vector capacity to at least the specified size. Does not modify the element count. Returns true if successful.                    |
 
 Types: VEC_INT, VEC_FLOAT, VEC_CHAR, VEC_STRING
 
