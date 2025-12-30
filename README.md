@@ -93,6 +93,8 @@ gcc main.c -lvectors -o app
 | ShrinkToFitVec(void vec, enum VecType type)*               | ShrinkToFitVec(vec, VEC_INT)          | Shrink capacity to match the current number of elements. Frees unused memory. Returns true if reallocation succeeded.                      |
 | ShrinkVec(void vec, size_t size, enum VecType type)*       | ShrinkVec(vec, 8, VEC_INT)            | Reduce vector capacity to the specified new size (if smaller than current capacity). Returns true if successful.                           |
 | ExtendVec(void vec, size_t size, enum VecType type)*       | ExtendVec(vec, 64, VEC_INT)           | Increase vector capacity to at least the specified size. Does not modify the element count. Returns true if successful.                    |
+| GetSizeVec(void* vec, enum VecType type)                   | size = GetSizeVec(vec, VEC_INT)       | Return size (ptrdiff_t): ≥0=valid,   -1=ERROR   (NULL/corrupted vec).                                                                    |
+| GetCapacityVec(void* vec, enum VecType type)               | cap = GetCapacityVec(vec, VEC_INT)    | Return capacity (ptrdiff_t): ≥0=valid, -1=ERROR.                                                                                         |
 
 Types: VEC_INT, VEC_FLOAT, VEC_CHAR, VEC_STRING
 
