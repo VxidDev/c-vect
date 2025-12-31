@@ -83,6 +83,14 @@ int main(int argc, char **argv) {
 
     printf("*-*-*-* ExtendVec Test Passed *-*-*-*\n");
 
+    InsertVec(Vector , &(int){1} , 3 , VEC_INT);
+    printf("Index: %i , Item: %i\n" , 3 , *(int*)GetItemFromVec(Vector, 3, VEC_INT));
+    printf("\nSize: %zu , Capacity: %zu\n" , GetSizeVec(Vector, VEC_INT) , GetCapacityVec(Vector, VEC_INT));
+    if (InsertVec(Vector , &(int){1} , 7 , VEC_INT)) printf("Index: %i , Item: %i\n" , 7 , *(int*)GetItemFromVec(Vector, 7, VEC_INT));;
+    printf("\nSize: %zu , Capacity: %zu\n" , GetSizeVec(Vector, VEC_INT) , GetCapacityVec(Vector, VEC_INT));
+
+    printf("*-*-*-* InsertVec Test Passed *-*-*-*\n");
+
     FreeVec(Vector, VEC_INT);
 
     printf("*-*-*-* SUCCESS *-*-*-*\n");
