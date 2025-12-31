@@ -95,6 +95,7 @@ gcc main.c -lvectors -o app
 | GetSizeVec(void* vec, enum VecType type)                   | size = GetSizeVec(vec, VEC_INT)       | Return size (ptrdiff_t): ≥0=valid,   -1=ERROR   (NULL/corrupted vec).                                                                      |
 | GetCapacityVec(void* vec, enum VecType type)               | cap = GetCapacityVec(vec, VEC_INT)    | Return capacity (ptrdiff_t): ≥0=valid, -1=ERROR.                                                                                           |
 | InsertVec(void* vec, void* item, size_t index, enum VecType type)| rslt = InsertVec(Vector , &(int){1} , 3 , VEC_INT);| Insert specified item at selected index. Returns ```true``` if success, otherwise returns ```false```.                  |
+| SetItemVec(void* vec, void* item, size_t index, enum VecType type)| rslt = SetItemVec(Vector, &(int){7}, 7, VEC_INT); | Change replace value of specified index with given item. Returns ```true``` if success, otherwise returns ```false```.  |
 
 Types: VEC_INT, VEC_FLOAT, VEC_CHAR, VEC_STRING
 
