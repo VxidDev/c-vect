@@ -104,8 +104,6 @@ Types: VEC_INT, VEC_FLOAT, VEC_CHAR, VEC_STRING
 free(data) → free(struct)  ✅
 ```
 
-Single header → zero deps → production ready! 🚀
-
 ## Safety Rules
 
   - Always check InitVec != NULL
