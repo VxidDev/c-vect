@@ -1,4 +1,5 @@
 #include "../include/vectors.h"
+#include <string.h>
 
 void AppendVec(void* vec , void* item , enum VecType type) {
     switch (type) {
@@ -57,7 +58,7 @@ void AppendVec(void* vec , void* item , enum VecType type) {
                 }
             }   
 
-            Vec->vec[Vec->size] = *(char**)item;
+            strcpy((char*)item, Vec->vec[Vec->size]);
             Vec->size++;
         }
             break;

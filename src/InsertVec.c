@@ -78,7 +78,7 @@ bool InsertVec(void *vec, void *item, size_t index, enum VecType type) {
                 Vec->vec[i] = Vec->vec[i - 1];
             }
 
-            Vec->vec[index] = (char*)item;
+            strcpy((char*)item, Vec->vec[index]);
 
             Vec->size++;
 

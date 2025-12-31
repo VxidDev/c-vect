@@ -91,6 +91,11 @@ int main(int argc, char **argv) {
 
     printf("*-*-*-* InsertVec Test Passed *-*-*-*\n");
 
+    SetItemVec(Vector, &(int){7}, 7, VEC_INT);
+    printf("Index: 7 , Value: %i\n" , *(int*)GetItemFromVec(Vector, 7, VEC_INT));
+
+    printf("*-*-*-* SetItemVec Test Passed *-*-*-*\n");
+
     FreeVec(Vector, VEC_INT);
 
     printf("*-*-*-* SUCCESS *-*-*-*\n");
