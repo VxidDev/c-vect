@@ -96,6 +96,11 @@ int main(int argc, char **argv) {
 
     printf("*-*-*-* SetItemVec Test Passed *-*-*-*\n");
 
+    printf("Contains 7: %s\n" , ContainsVec(Vector, &(int){7}, VEC_INT) ? "true" : "false");
+    printf("Contains 90: %s\n" , ContainsVec(Vector, &(int){90}, VEC_INT) ? "true" : "false");
+
+    printf("*-*-*-* ContainsVec Test Passed *-*-*-*\n");
+
     FreeVec(Vector, VEC_INT);
 
     printf("*-*-*-* SUCCESS *-*-*-*\n");
