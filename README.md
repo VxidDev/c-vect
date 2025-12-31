@@ -65,7 +65,7 @@ Using the Library
 #include <vectors.h>  // Standard include!
 
 int main() {
-    void* vec = InitVec(VEC_INT);
+    void* vec = InitVec(VEC_INT , NULL , NULL);
     AppendVec(vec, &(int){42}, VEC_INT);
     FreeVec(vec, VEC_INT);
     return 0;
