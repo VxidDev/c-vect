@@ -101,6 +101,20 @@ int main(int argc, char **argv) {
 
     printf("*-*-*-* ContainsVec Test Passed *-*-*-*\n");
 
+    printf("--- BEFORE SORT ---\n");
+    for (size_t i = 0; i < Vector->size; i++) {
+        printf("Index: %zu , Value: %d\n" , i , *(int*)GetItemFromVec(Vector, i, VEC_INT));
+    }
+
+    SortVec(Vector, NULL, VEC_INT);
+
+    printf("--- AFTER SORT ---\n");
+    for (size_t i = 0; i < Vector->size; i++) {
+        printf("Index: %zu , Value: %d\n" , i , *(int*)GetItemFromVec(Vector, i, VEC_INT));
+    }
+
+    printf("*-*-*-* SortVec Test Passed *-*-*-*\n");
+
     FreeVec(Vector, VEC_INT);
 
     printf("*-*-*-* SUCCESS *-*-*-*\n");

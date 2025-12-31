@@ -22,7 +22,8 @@ SRCS = src/InitVec.c \
 	   src/GetCapacityVec.c \
 	   src/InsertVec.c \
 	   src/SetItemVec.c \
-	   src/ContainsVec.c
+	   src/ContainsVec.c \
+	   src/SortVec.c
 
 OBJS = $(SRCS:.c=.o)
 
