@@ -13,7 +13,7 @@ Features
 #include <vectors.h>
 
 int main() {
-    struct IntVec* vec = InitVec(VEC_INT, NULL , NULL);
+    IntVec* vec = InitVec(VEC_INT, NULL, NULL);
     if (!vec) return 1;
     
     // Add elements
@@ -39,7 +39,6 @@ int main() {
     FreeVec(vec, VEC_INT);
     return 0;
 }
-
 ```
 ## Build
 
@@ -65,7 +64,7 @@ Using the Library
 #include <vectors.h>  // Standard include!
 
 int main() {
-    void* vec = InitVec(VEC_INT , NULL , NULL);
+    void* vec = InitVec(VEC_INT, NULL, NULL);
     AppendVec(vec, &(int){42}, VEC_INT);
     FreeVec(vec, VEC_INT);
     return 0;
