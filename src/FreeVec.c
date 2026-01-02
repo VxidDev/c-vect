@@ -3,7 +3,7 @@
 void FreeVec(void* vec , enum VecType type) {
     switch (type) {
         case VEC_INT: {
-            struct IntVec* Vec = (struct IntVec*)vec;
+            IntVec* Vec = (IntVec*)vec;
 
             free(Vec->vec);
             free(Vec);
@@ -11,7 +11,7 @@ void FreeVec(void* vec , enum VecType type) {
             break;
         }
         case VEC_FLOAT: {
-            struct FloatVec* Vec = (struct FloatVec*)vec;
+            FloatVec* Vec = (FloatVec*)vec;
 
             free(Vec->vec);
             free(Vec);
@@ -19,7 +19,7 @@ void FreeVec(void* vec , enum VecType type) {
             break;
         }
         case VEC_CHAR: {
-            struct CharVec* Vec = (struct CharVec*)vec;
+            CharVec* Vec = (CharVec*)vec;
 
             free(Vec->vec);
             free(Vec);
@@ -27,7 +27,7 @@ void FreeVec(void* vec , enum VecType type) {
             break;
         }
         case VEC_STRING: {
-            struct StrVec* Vec = (struct StrVec*)vec;
+            StrVec* Vec = (StrVec*)vec;
 
             free(Vec->vec);
             free(Vec);

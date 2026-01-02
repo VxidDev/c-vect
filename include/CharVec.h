@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include "vectors.h"
 
-struct CharVec {
+typedef struct {
     size_t size , capacity;
     char *vec;
-};
+} CharVec;

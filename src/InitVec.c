@@ -5,7 +5,7 @@ void* InitVec(enum VecType type , void* arr , void* arrlen) {
     switch (type) {
         case VEC_INT: {
 
-            struct IntVec* vec = (struct IntVec*)calloc(1 , sizeof(struct IntVec));
+            IntVec* vec = (IntVec*)calloc(1 , sizeof(IntVec));
 
             if (!vec) {
                 printf("Failed to initialize vector.\n");
@@ -45,7 +45,7 @@ void* InitVec(enum VecType type , void* arr , void* arrlen) {
 
         break;
         case VEC_FLOAT: {
-            struct FloatVec* vec = (struct FloatVec*)calloc(1 , sizeof(struct FloatVec));
+            FloatVec* vec = (FloatVec*)calloc(1 , sizeof(FloatVec));
 
             if (!vec) {
                 printf("Failed to initialize vector.\n");
@@ -85,7 +85,7 @@ void* InitVec(enum VecType type , void* arr , void* arrlen) {
 
         break;
         case VEC_STRING: {
-            struct StrVec* vec = (struct StrVec*)calloc(1 , sizeof(struct StrVec));
+            StrVec* vec = (StrVec*)calloc(1 , sizeof(StrVec));
 
             if (!vec) {
                 printf("Failed to initialize vector.\n");
@@ -125,7 +125,7 @@ void* InitVec(enum VecType type , void* arr , void* arrlen) {
 
         break;
         case VEC_CHAR: {
-            struct CharVec* vec = (struct CharVec*)calloc(1 , sizeof(struct CharVec));
+            CharVec* vec = (CharVec*)calloc(1 , sizeof(CharVec));
 
             if (!vec) {
                 printf("Failed to initialize vector.\n");

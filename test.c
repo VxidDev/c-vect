@@ -2,7 +2,7 @@
 
 int main(int argc, char **argv) {
     printf("*-*-*-* Vectors Test *-*-*-*\n");
-    struct IntVec *Vector = (struct IntVec*)InitVec(VEC_INT , (int[]){1 , 2 , 3 , 4 , 5} , &(int){5});
+    IntVec *Vector = (IntVec*)InitVec(VEC_INT , (int[]){1 , 2 , 3 , 4 , 5} , &(int){5});
 
     printf("\nSize: %zu , Capacity: %zu\n" , GetSizeVec(Vector, VEC_INT) , GetCapacityVec(Vector, VEC_INT));
 

@@ -3,7 +3,7 @@
 void* PopVec(void* vec , enum VecType type) {
     switch (type) {
         case VEC_INT: {
-            struct IntVec* Vec = (struct IntVec*)vec;
+            IntVec* Vec = (IntVec*)vec;
 
             if (Vec->size == 0) {
                 printf("Vector's size is 0.\n");
@@ -15,7 +15,7 @@ void* PopVec(void* vec , enum VecType type) {
             return GetLastVec(vec, VEC_INT);
         }
         case VEC_FLOAT: {
-            struct FloatVec* Vec = (struct FloatVec*)vec;
+            FloatVec* Vec = (FloatVec*)vec;
 
             if (Vec->size == 0) {
                 printf("Vector's size is 0.\n");
@@ -27,7 +27,7 @@ void* PopVec(void* vec , enum VecType type) {
             return GetLastVec(vec, VEC_FLOAT);
         }
         case VEC_CHAR: {
-            struct CharVec* Vec = (struct CharVec*)vec;
+            CharVec* Vec = (CharVec*)vec;
 
             if (Vec->size == 0) {
                 printf("Vector's size is 0.\n");
@@ -39,7 +39,7 @@ void* PopVec(void* vec , enum VecType type) {
             return GetLastVec(vec, VEC_CHAR);
         }
         case VEC_STRING: {
-            struct StrVec* Vec = (struct StrVec*)vec;
+            StrVec* Vec = (StrVec*)vec;
 
             if (Vec->size == 0) {
                 printf("Vector's size is 0.\n");

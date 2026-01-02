@@ -3,7 +3,7 @@
 bool ResetVec(void *vec, enum VecType type) {
     switch (type) {
         case VEC_INT: {
-            struct IntVec* Vec = (struct IntVec*)vec;
+            IntVec* Vec = (IntVec*)vec;
 
             void* ptr = realloc(Vec->vec , 16 * sizeof(int));
 
@@ -18,7 +18,7 @@ bool ResetVec(void *vec, enum VecType type) {
             return false;
         }
         case VEC_FLOAT: {
-            struct FloatVec* Vec = (struct FloatVec*)vec;
+            FloatVec* Vec = (FloatVec*)vec;
 
             void* ptr = realloc(Vec->vec , 16 * sizeof(float));
 
@@ -33,7 +33,7 @@ bool ResetVec(void *vec, enum VecType type) {
             return false;
         }
         case VEC_CHAR: {
-            struct CharVec* Vec = (struct CharVec*)vec;
+            CharVec* Vec = (CharVec*)vec;
 
             void* ptr = realloc(Vec->vec , 16 * sizeof(char));
 
@@ -48,7 +48,7 @@ bool ResetVec(void *vec, enum VecType type) {
             return false;
         }
         case VEC_STRING: {
-            struct StrVec* Vec = (struct StrVec*)vec;
+            StrVec* Vec = (StrVec*)vec;
 
             void* ptr = realloc(Vec->vec , 16 * sizeof(char*));
 

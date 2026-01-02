@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include "vectors.h"
 
-struct FloatVec {
+typedef struct {
     size_t size , capacity;
     float *vec;
-};
+} FloatVec;

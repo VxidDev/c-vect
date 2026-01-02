@@ -4,7 +4,7 @@
 bool ContainsVec(void *vec, void *item, enum VecType type) {
     switch (type) {
         case VEC_INT: {
-            const struct IntVec* Vec = (const struct IntVec*)vec;
+            const IntVec* Vec = (const IntVec*)vec;
             const int Item = *(const int*)item;
 
             for (size_t i = 0; i < Vec->size; i++) {
@@ -14,7 +14,7 @@ bool ContainsVec(void *vec, void *item, enum VecType type) {
             return false;
         }
         case VEC_FLOAT: {
-            const struct FloatVec* Vec = (const struct FloatVec*)vec;
+            const FloatVec* Vec = (const FloatVec*)vec;
             const float Item = *(const float*)item;
 
             for (size_t i = 0; i < Vec->size; i++) {
@@ -24,7 +24,7 @@ bool ContainsVec(void *vec, void *item, enum VecType type) {
             return false;
         }
         case VEC_CHAR: {
-            const struct CharVec* Vec = (const struct CharVec*)vec;
+            const CharVec* Vec = (const CharVec*)vec;
             const char Item = *(const char*)item;
 
             for (size_t i = 0; i < Vec->size; i++) {
@@ -34,7 +34,7 @@ bool ContainsVec(void *vec, void *item, enum VecType type) {
             return false;
         }
         case VEC_STRING: {
-            const struct StrVec* Vec = (const struct StrVec*)vec;
+            const StrVec* Vec = (const StrVec*)vec;
             const char* Item = (const char*)item;
 
             for (size_t i = 0; i < Vec->size; i++) {

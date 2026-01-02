@@ -3,7 +3,7 @@
 void* GetItemFromVec(void* vec , size_t index , enum VecType type) {
     switch (type) {
         case VEC_INT: {
-            struct IntVec* Vec = (struct IntVec*)vec;
+            IntVec* Vec = (IntVec*)vec;
 
             if (Vec->size == 0 || index >= Vec->size) {
                 printf("Index (%zu) out of vector's range.\n" , index);
@@ -13,7 +13,7 @@ void* GetItemFromVec(void* vec , size_t index , enum VecType type) {
             return (void*)&Vec->vec[index];
         }
         case VEC_FLOAT: {
-            struct FloatVec* Vec = (struct FloatVec*)vec;
+            FloatVec* Vec = (FloatVec*)vec;
 
             if (Vec->size == 0 || index >= Vec->size) {
                 printf("Index (%zu) out of vector's range.\n" , index);
@@ -23,7 +23,7 @@ void* GetItemFromVec(void* vec , size_t index , enum VecType type) {
             return (void*)&Vec->vec[index];
         }
         case VEC_CHAR: {
-            struct CharVec* Vec = (struct CharVec*)vec;
+            CharVec* Vec = (CharVec*)vec;
 
             if (Vec->size == 0 || index >= Vec->size) {
                 printf("Index (%zu) out of vector's range.\n" , index);
@@ -33,7 +33,7 @@ void* GetItemFromVec(void* vec , size_t index , enum VecType type) {
             return (void*)&Vec->vec[index];
         }
         case VEC_STRING: {
-            struct StrVec* Vec = (struct StrVec*)vec;
+            StrVec* Vec = (StrVec*)vec;
 
             if (Vec->size == 0 || index >= Vec->size) {
                 printf("Index (%zu) out of vector's range.\n" , index);

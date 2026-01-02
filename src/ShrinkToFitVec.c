@@ -3,7 +3,7 @@
 bool ShrinkToFitVec(void *vec, enum VecType type) {
     switch (type) {
         case VEC_INT: {
-            struct IntVec* Vec = (struct IntVec*)vec;
+            IntVec* Vec = (IntVec*)vec;
 
             if (Vec->size == Vec->capacity) return true;
 
@@ -21,7 +21,7 @@ bool ShrinkToFitVec(void *vec, enum VecType type) {
             return false;
         }
         case VEC_FLOAT: {
-            struct FloatVec* Vec = (struct FloatVec*)vec;
+            FloatVec* Vec = (FloatVec*)vec;
 
             if (Vec->size == Vec->capacity) return true;
 
@@ -39,7 +39,7 @@ bool ShrinkToFitVec(void *vec, enum VecType type) {
             return false;
         }
         case VEC_CHAR: {
-            struct CharVec* Vec = (struct CharVec*)vec;
+            CharVec* Vec = (CharVec*)vec;
 
             if (Vec->size == Vec->capacity) return true;
 
@@ -57,7 +57,7 @@ bool ShrinkToFitVec(void *vec, enum VecType type) {
             return false;
         }
         case VEC_STRING: {
-            struct StrVec* Vec = (struct StrVec*)vec;
+            StrVec* Vec = (StrVec*)vec;
 
             if (Vec->size == Vec->capacity) return true;
 

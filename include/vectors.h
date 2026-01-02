@@ -30,3 +30,6 @@ bool SetItemVec(void* vec, void* item, size_t index, enum VecType type);
 bool ContainsVec(void* vec, void* item, enum VecType type);
 bool SortVec(void* vec, int(*compare)(const void* , const void*) , enum VecType type);
 int SortVec__CompInt(const void* a , const void* b);
+int SortVec__CompFloat(const void* a, const void* b);
+int SortVec__CompChar(const void* a, const void* b);
+int SortVec__CompStr(const void* a, const void* b);

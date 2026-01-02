@@ -4,7 +4,7 @@
 void AppendVec(void* vec , void* item , enum VecType type) {
     switch (type) {
         case (VEC_CHAR): {
-            struct CharVec* Vec = (struct CharVec*)vec;
+            CharVec* Vec = (CharVec*)vec;
 
             if (Vec->capacity < Vec->size + 1) {
                 Vec->capacity *= 2 ?: 16;
@@ -25,7 +25,7 @@ void AppendVec(void* vec , void* item , enum VecType type) {
         }
             break;
         case (VEC_INT): {
-            struct IntVec* Vec = (struct IntVec*)vec;
+            IntVec* Vec = (IntVec*)vec;
 
             if (Vec->capacity < Vec->size + 1) {
                 Vec->capacity *= 2 ?: 16;
@@ -44,7 +44,7 @@ void AppendVec(void* vec , void* item , enum VecType type) {
         }
             break;
         case (VEC_STRING): {
-            struct StrVec* Vec = (struct StrVec*)vec;
+            StrVec* Vec = (StrVec*)vec;
 
             if (Vec->capacity < Vec->size + 1) {
                 Vec->capacity *= 2 ?: 16;
@@ -63,7 +63,7 @@ void AppendVec(void* vec , void* item , enum VecType type) {
         }
             break;
         case (VEC_FLOAT): {
-            struct FloatVec* Vec = (struct FloatVec*)vec;
+            FloatVec* Vec = (FloatVec*)vec;
 
             if (Vec->capacity < Vec->size + 1) {
                 Vec->capacity *= 2 ?: 16;
