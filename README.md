@@ -13,30 +13,19 @@ Features
 #include <vectors.h>
 
 int main() {
-    IntVec* vec = InitVec(VEC_INT, NULL, NULL);
-    if (!vec) return 1;
-    
-    // Add elements
-    for (int i = 0; i < 20; i++) {
-        AppendVec(vec, &(int){i}, VEC_INT);
+    Vector* IntVector = InitVec(VEC_INT , (int[]){1 , 2 , 3} , &(size_t){3}); // Initialize Vector
+
+    if (!IntVector) {  // Check if successfully created vector
+        printf("Failed to initialize IntVec.\n");
+        return 1;
+    }
+
+    const IntVec* Data = (const IntVec*)IntVector->data; // Extract Data from vector (functions to access vector's data are still not refactored);
+    for (size_t i = 0; i < Data->size; i++) { // Print vector's data
+         printf("Item @ %zu -> %i\n" , i , Data->vec[i]);
     }
     
-    printf("Size: %zu, Capacity: %zu\n", 
-           vec->size, 
-           vec->capacity);
-    
-    // Access & modify
-    int* last = GetLastVec(vec, VEC_INT);
-    if (last) *last = 999;
-    
-    // Iterate safely
-    for (size_t i = 0; i < SizeVec(vec, VEC_INT); i++) {
-        int* item = GetItemFromVec(vec, i, VEC_INT);
-        if (item) printf("%d ", *item);
-    }
-    printf("\n");
-    
-    FreeVec(vec, VEC_INT);
+    FreeVec(IntVector); // Free Vector.
     return 0;
 }
 ```
@@ -62,13 +51,6 @@ Using the Library
 1. System-wide (after make install)
 ```C
 #include <vectors.h>  // Standard include!
-
-int main() {
-    void* vec = InitVec(VEC_INT, NULL, NULL);
-    AppendVec(vec, &(int){42}, VEC_INT);
-    FreeVec(vec, VEC_INT);
-    return 0;
-}
 ```
 ```bash
 gcc main.c -lvectors -o app
@@ -76,12 +58,13 @@ gcc main.c -lvectors -o app
 ```
 
 ## API
+'*' before a function name means function is re-factored and now usable.
 
 | Function                                                   | Usage                                 | Description                                                                                                                                |
 | ---------------------------------------------------------- | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------|
-| InitVec(enum VecType type, void arr, void arrlen)**        | vec = InitVec(VEC_INT, arr, &arrlen)  | Initialize a new vector with optional source array and length. If arr and arrlen is NULL, creates an empty vector (default capacity = 16). |
+| * InitVec(enum VecType type, void arr, void arrlen)**        | vec = InitVec(VEC_INT, arr, &arrlen)  | Initialize a new vector with optional source array and length. If arr and arrlen is NULL, creates an empty Vector* (default capacity = 16).|
 | AppendVec(void vec, void item, enum VecType type)**        | AppendVec(vec, &value, VEC_INT)       | Append an element to the end of the vector. Automatically resizes (×2) as needed.                                                          |
-| FreeVec(void vec, enum VecType type)*                      | FreeVec(vec, VEC_INT)                 | Free all allocated memory associated with the vector.                                                                                      |
+| * FreeVec(void vec, enum VecType type)*                      | FreeVec(vec, VEC_INT)                 | Free all allocated memory associated with the vector.                                                                                      |
 | GetLastVec(void vec, enum VecType type)*                   | ptr = GetLastVec(vec, VEC_INT)        | Get a pointer to the last element, or NULL if the vector is empty.                                                                         |
 | PopVec(void vec, enum VecType type)*                       | ptr = PopVec(vec, VEC_INT)            | Remove and return a pointer to the last element. Returns NULL if the vector is empty.                                                      |
 | RemoveFromVec(void vec, size_t index, enum VecType type)*  | ok = RemoveFromVec(vec, 2, VEC_INT)   | Remove element at a given index (shifts left). Returns true if successful.                                                                 |
