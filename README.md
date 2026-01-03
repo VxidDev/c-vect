@@ -77,7 +77,8 @@ gcc main.c -lvectors -o app
 | * GetCapacityVec(Vector* vec)                              | cap = GetCapacityVec(vec)             | Return capacity (ptrdiff_t): ≥0=valid, -1=ERROR.                                                                                           |
 | * InsertVec(Vector* vec, void* item, size_t index)         | ok = InsertVec(Vector , &(int){1} , 3)| Insert specified item at selected index. Returns ```true``` if success, otherwise returns ```false```.                                     |
 | * SetItemVec(Vector* vec, void* item, size_t index)        | ok = SetItemVec(Vector, &(int){7}, 7) | Change replace value of specified index with given item. Returns ```true``` if success, otherwise returns ```false```.                     |
-| `SortVec(void* vec, int(*compare)(const void* , const void*) , enum VecType type)`| rslt = SortVec(Vector , NULL , VEC_INT);| Sort vector via quick sort with pre-made or your own criteria. Returns ```true``` if success, otherwise returns ```false```. |
+| * SortVec(Vector* vec, int(* compare)(const void* , const void*))| ok = SortVec(Vector , NULL)     | Sort vector via quick sort with pre-made or your own criteria. Returns ```true``` if success, otherwise returns ```false```.               |
+| * ContainsVec(Vector* vec , void* item)                    | ok = ContainsVec(Vector , &(int){3}   | Check if vector contains given item. Return ```true``` if does, otherwise returns ```false```. Algorithm complexity O(n).                  |
 
 Types: VEC_INT, VEC_FLOAT, VEC_CHAR, VEC_STRING
 
