@@ -7,37 +7,30 @@ void FreeVec(void* vec) {
     switch (type) {
         case VEC_INT: {
             IntVec* Array = (IntVec*)Vec->data;
-
             free(Array->vec);
-            free(Vec->data);
 
             break;
         }
         case VEC_FLOAT: {
             FloatVec* Array = (FloatVec*)Vec->data;
-
             free(Array->vec);
-            free(Vec->data);
 
             break;
         }
         case VEC_CHAR: {
             CharVec* Array = (CharVec*)Vec->data;
-
             free(Array->vec);
-            free(Vec->data);
 
             break;
         }
         case VEC_STRING: {
             StrVec* Array = (StrVec*)Vec->data;
-
             free(Array->vec);
-            free(Vec->data);
 
             break;
         }
     }
 
+    free(Vec->data);
     free(vec);
 }
