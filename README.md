@@ -20,9 +20,8 @@ int main() {
         return 1;
     }
 
-    const IntVec* Data = (const IntVec*)IntVector->data; // Extract Data from vector (functions to access vector's data are still not refactored);
     for (size_t i = 0; i < Data->size; i++) { // Print vector's data
-         printf("Item @ %zu -> %i\n" , i , Data->vec[i]);
+         printf("Item @ %zu -> %i\n" , i , GetItemFromVec(IntVector , i));
     }
     
     FreeVec(IntVector); // Free Vector.
