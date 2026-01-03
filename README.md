@@ -75,8 +75,8 @@ gcc main.c -lvectors -o app
 | * ExtendVec(Vector* vec, size_t size)*                     | ExtendVec(vec, 64)                    | Increase vector capacity to at least the specified size. Does not modify the element count. Returns true if successful.                    |
 | * GetSizeVec(Vector* vec)                                  | size = GetSizeVec(vec)                | Return size (ptrdiff_t): ≥0=valid,   -1=ERROR   (NULL/corrupted vec).                                                                      |
 | * GetCapacityVec(Vector* vec)                              | cap = GetCapacityVec(vec)             | Return capacity (ptrdiff_t): ≥0=valid, -1=ERROR.                                                                                           |
-| * InsertVec(Vector* vec, void* item, size_t index)         | rslt = InsertVec(Vector , &(int){1} , 3)| Insert specified item at selected index. Returns ```true``` if success, otherwise returns ```false```.                                   |
-| SetItemVec(void* vec, void* item, size_t index, enum VecType type)| rslt = SetItemVec(Vector, &(int){7}, 7, VEC_INT); | Change replace value of specified index with given item. Returns ```true``` if success, otherwise returns ```false```.  |
+| * InsertVec(Vector* vec, void* item, size_t index)         | ok = InsertVec(Vector , &(int){1} , 3)| Insert specified item at selected index. Returns ```true``` if success, otherwise returns ```false```.                                     |
+| * SetItemVec(Vector* vec, void* item, size_t index)        | ok = SetItemVec(Vector, &(int){7}, 7) | Change replace value of specified index with given item. Returns ```true``` if success, otherwise returns ```false```.                     |
 | `SortVec(void* vec, int(*compare)(const void* , const void*) , enum VecType type)`| rslt = SortVec(Vector , NULL , VEC_INT);| Sort vector via quick sort with pre-made or your own criteria. Returns ```true``` if success, otherwise returns ```false```. |
 
 Types: VEC_INT, VEC_FLOAT, VEC_CHAR, VEC_STRING
