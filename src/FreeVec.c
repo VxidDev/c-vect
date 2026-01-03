@@ -1,8 +1,9 @@
 #include "../include/vectors.h"
 
-void FreeVec(void* vec) {
-    enum VecType type = ((Vector*)vec)->type;
-    Vector* Vec = (Vector*)vec;
+void FreeVec(Vector* Vec) {
+    if (!Vec) return;
+    
+    enum VecType type = Vec->type;
 
     switch (type) {
         case VEC_INT: {
@@ -32,5 +33,5 @@ void FreeVec(void* vec) {
     }
 
     free(Vec->data);
-    free(vec);
+    free(Vec);
 }

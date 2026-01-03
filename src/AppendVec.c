@@ -1,85 +1,77 @@
 #include "../include/vectors.h"
-#include <string.h>
 
-void AppendVec(void* vec , void* item , enum VecType type) {
+bool AppendVec(Vector* vec , void* item) {
+    if (!vec) return false;
+
+    enum VecType type = vec->type;
+
     switch (type) {
-        case (VEC_CHAR): {
-            CharVec* Vec = (CharVec*)vec;
+        case VEC_CHAR: {
+            CharVec* Vec = (CharVec*)vec->data;
 
-            if (Vec->capacity < Vec->size + 1) {
-                Vec->capacity *= 2 ?: 16;
-                char *temp = (char*)realloc(Vec->vec , Vec->capacity * sizeof(char));
+            if (Vec->size == Vec->capacity) {
+                Vec->capacity = Vec->capacity ? Vec->capacity * 2 : 16;
+
+                char* temp = realloc(Vec->vec, Vec->capacity * sizeof(char));
                 
-                if (temp != NULL) {
-                    Vec->vec = temp;
-                } else {
-                    printf("Failed to allocate memory for appending.\n");
-                    return;
-                }
-            }   
+                if (!temp) return false;
 
-            Vec->vec[Vec->size] = *(char*)item;
-            Vec->size++;
-            Vec->vec[Vec->size] = '\0';
+                Vec->vec = temp;
+            }
 
+            Vec->vec[Vec->size++] = *(char*)item;
+            return true;  
         }
-            break;
-        case (VEC_INT): {
-            IntVec* Vec = (IntVec*)vec;
+        case VEC_INT: {
+            IntVec* Vec = (IntVec*)vec->data;
 
-            if (Vec->capacity < Vec->size + 1) {
-                Vec->capacity *= 2 ?: 16;
-                int *temp = (int*)realloc(Vec->vec , Vec->capacity * sizeof(int));
+            if (Vec->size == Vec->capacity) {
+                Vec->capacity = Vec->capacity ? Vec->capacity * 2 : 16;
+
+                int* temp = realloc(Vec->vec, Vec->capacity * sizeof(int));
                 
-                if (temp != NULL) {
-                    Vec->vec = temp;
-                } else {
-                    printf("Failed to allocate memory for appending.\n");
-                    return;
-                }
-            }   
+                if (!temp) return false;
 
-            Vec->vec[Vec->size] = *(int*)item;
-            Vec->size++;
+                Vec->vec = temp;
+            }
+
+            Vec->vec[Vec->size++] = *(int*)item;  
+            return true;
         }
-            break;
-        case (VEC_STRING): {
-            StrVec* Vec = (StrVec*)vec;
+        case VEC_STRING: {
+            StrVec* Vec = (StrVec*)vec->data;
 
-            if (Vec->capacity < Vec->size + 1) {
-                Vec->capacity *= 2 ?: 16;
-                char* *temp = (char**)realloc(Vec->vec , Vec->capacity * sizeof(char*));
+            if (Vec->size == Vec->capacity) {
+                Vec->capacity = Vec->capacity ? Vec->capacity * 2 : 16;
+
+                char** temp = realloc(Vec->vec, Vec->capacity * sizeof(char*));
                 
-                if (temp != NULL) {
-                    Vec->vec = temp;
-                } else {
-                    printf("Failed to allocate memory for appending.\n");
-                    return;
-                }
-            }   
+                if (!temp) return false;
 
-            strcpy((char*)item, Vec->vec[Vec->size]);
+                Vec->vec = temp;
+            }
+  
+            Vec->vec[Vec->size] = (char*)item;
             Vec->size++;
-        }
-            break;
-        case (VEC_FLOAT): {
-            FloatVec* Vec = (FloatVec*)vec;
 
-            if (Vec->capacity < Vec->size + 1) {
-                Vec->capacity *= 2 ?: 16;
-                float *temp = (float*)realloc(Vec->vec , Vec->capacity * sizeof(float));
+            return true;   
+        }
+        case VEC_FLOAT: {
+            FloatVec* Vec = (FloatVec*)vec->data;
+
+            if (Vec->size == Vec->capacity) {
+                Vec->capacity = Vec->capacity ? Vec->capacity * 2 : 16;
+
+                float* temp = realloc(Vec->vec, Vec->capacity * sizeof(float));
                 
-                if (temp != NULL) {
-                    Vec->vec = temp;
-                } else {
-                    printf("Failed to allocate memory for appending.\n");
-                    return;
-                }
-            }   
+                if (!temp) return false;
 
-            Vec->vec[Vec->size] = *(float*)item;
-            Vec->size++;
+                Vec->vec = temp;
+            }
+
+            Vec->vec[Vec->size++] = *(float*)item;  
+            return true;   
         }
-            break;
+        default: return false;
     }
 }

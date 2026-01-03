@@ -14,8 +14,10 @@ enum VecType { VEC_CHAR , VEC_STRING , VEC_INT , VEC_FLOAT };
 
 Vector* InitVec(enum VecType type, void* arr , void* arrlen);
 
-void AppendVec(void* vec , void* item , enum VecType type);
-void FreeVec(void* vec);
+bool AppendVec(Vector* Vec , void* item);
+
+void FreeVec(Vector* vec);
+
 void* GetLastVec(void* vec , enum VecType type);
 void* PopVec(void* vec , enum VecType type);
 bool RemoveFromVec(void* vec , size_t index , enum VecType type);
