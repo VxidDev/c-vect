@@ -10,10 +10,14 @@ enum VecType { VEC_CHAR , VEC_STRING , VEC_INT , VEC_FLOAT };
 #include "CharVec.h"
 #include "IntVec.h"
 #include "StrVec.h"
+#include "BaseVec.h"
 
-void* InitVec(enum VecType type, void* arr , void* arrlen);
-void AppendVec(void* vec , void* item , enum VecType type);
-void FreeVec(void* vec , enum VecType type);
+Vector* InitVec(enum VecType type, void* arr , void* arrlen);
+
+void AppendVec(Vector* vec , void* item);
+
+void FreeVec(Vector* Vec);
+
 void* GetLastVec(void* vec , enum VecType type);
 void* PopVec(void* vec , enum VecType type);
 bool RemoveFromVec(void* vec , size_t index , enum VecType type);

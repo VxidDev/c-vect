@@ -1,7 +1,8 @@
 #include "../include/vectors.h"
 #include <string.h>
 
-void AppendVec(void* vec , void* item , enum VecType type) {
+void AppendVec(Vector* vec , void* item) {
+    
     switch (type) {
         case (VEC_CHAR): {
             CharVec* Vec = (CharVec*)vec;
