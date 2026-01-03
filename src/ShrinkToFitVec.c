@@ -1,9 +1,9 @@
 #include "../include/vectors.h"
 
-bool ShrinkToFitVec(void *vec, enum VecType type) {
-    switch (type) {
+bool ShrinkToFitVec(Vector* vec) {
+    switch (vec->type) {
         case VEC_INT: {
-            IntVec* Vec = (IntVec*)vec;
+            IntVec* Vec = (IntVec*)vec->data;
 
             if (Vec->size == Vec->capacity) return true;
 
@@ -16,12 +16,10 @@ bool ShrinkToFitVec(void *vec, enum VecType type) {
                 return true;
             }
 
-            printf("Failed to shrink vector.\n");
-
             return false;
         }
         case VEC_FLOAT: {
-            FloatVec* Vec = (FloatVec*)vec;
+            FloatVec* Vec = (FloatVec*)vec->data;
 
             if (Vec->size == Vec->capacity) return true;
 
@@ -34,12 +32,10 @@ bool ShrinkToFitVec(void *vec, enum VecType type) {
                 return true;
             }
 
-            printf("Failed to shrink vector.\n");
-
             return false;
         }
         case VEC_CHAR: {
-            CharVec* Vec = (CharVec*)vec;
+            CharVec* Vec = (CharVec*)vec->data;
 
             if (Vec->size == Vec->capacity) return true;
 
@@ -52,12 +48,10 @@ bool ShrinkToFitVec(void *vec, enum VecType type) {
                 return true;
             }
 
-            printf("Failed to shrink vector.\n");
-
             return false;
         }
         case VEC_STRING: {
-            StrVec* Vec = (StrVec*)vec;
+            StrVec* Vec = (StrVec*)vec->data;
 
             if (Vec->size == Vec->capacity) return true;
 
@@ -69,8 +63,6 @@ bool ShrinkToFitVec(void *vec, enum VecType type) {
 
                 return true;
             }
-
-            printf("Failed to shrink vector.\n");
 
             return false;
         }

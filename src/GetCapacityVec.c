@@ -1,18 +1,18 @@
 #include "../include/vectors.h"
 
-ptrdiff_t GetCapacityVec(void *vec, enum VecType type) {
-    switch (type) {
+ptrdiff_t GetCapacityVec(Vector* vec) {
+    switch (vec->type) {
         case VEC_INT: {
-            return ((const IntVec*)vec)->capacity;
+            return ((const IntVec*)vec->data)->capacity;
         }
         case VEC_FLOAT: {
-            return ((const FloatVec*)vec)->capacity;
+            return ((const FloatVec*)vec->data)->capacity;
         }
         case VEC_STRING: {
-            return ((const FloatVec*)vec)->capacity;
+            return ((const FloatVec*)vec->data)->capacity;
         }
         case VEC_CHAR: {
-            return ((const FloatVec*)vec)->capacity;
+            return ((const FloatVec*)vec->data)->capacity;
         }
         default: return -1;
     }

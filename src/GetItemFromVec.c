@@ -1,42 +1,38 @@
 #include "../include/vectors.h"
 
-void* GetItemFromVec(void* vec , size_t index , enum VecType type) {
-    switch (type) {
+void* GetItemFromVec(Vector* vec , size_t index) {
+    switch (vec->type) {
         case VEC_INT: {
-            IntVec* Vec = (IntVec*)vec;
+            const IntVec* Vec = (const IntVec*)vec->data;
 
             if (Vec->size == 0 || index >= Vec->size) {
-                printf("Index (%zu) out of vector's range.\n" , index);
                 return NULL;
             } 
 
             return (void*)&Vec->vec[index];
         }
         case VEC_FLOAT: {
-            FloatVec* Vec = (FloatVec*)vec;
+            const FloatVec* Vec = (const FloatVec*)vec->data;
 
             if (Vec->size == 0 || index >= Vec->size) {
-                printf("Index (%zu) out of vector's range.\n" , index);
                 return NULL;
             } 
 
             return (void*)&Vec->vec[index];
         }
         case VEC_CHAR: {
-            CharVec* Vec = (CharVec*)vec;
+            const CharVec* Vec = (const CharVec*)vec->data;
 
             if (Vec->size == 0 || index >= Vec->size) {
-                printf("Index (%zu) out of vector's range.\n" , index);
                 return NULL;
             } 
 
             return (void*)&Vec->vec[index];
         }
         case VEC_STRING: {
-            StrVec* Vec = (StrVec*)vec;
+            const StrVec* Vec = (const StrVec*)vec->data;
 
             if (Vec->size == 0 || index >= Vec->size) {
-                printf("Index (%zu) out of vector's range.\n" , index);
                 return NULL;
             } 
 

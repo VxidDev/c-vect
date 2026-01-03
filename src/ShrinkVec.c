@@ -1,17 +1,11 @@
 #include "../include/vectors.h"
 
-bool ShrinkVec(void *vec, size_t size, enum VecType type) {
-    switch (type) {
+bool ShrinkVec(Vector* vec, size_t size) {
+    switch (vec->type) {
         case VEC_INT: {
-            IntVec* Vec = (IntVec*)vec;
+            IntVec* Vec = (IntVec*)vec->data;
 
-            if (Vec->size > size) {
-                printf("Can't resize vector, current element count exceeds target size.\n");
-                return false;
-            }
-
-            if (Vec->capacity <= size) {
-                printf("Can't resize vector, current capacity is smaller or the same than target size. Use ExtendVec() instead.\n");
+            if (Vec->size > size || Vec->capacity <= size) {
                 return false;
             }
 
@@ -27,15 +21,9 @@ bool ShrinkVec(void *vec, size_t size, enum VecType type) {
             return false;
         }
         case VEC_FLOAT: {
-            FloatVec* Vec = (FloatVec*)vec;
+            FloatVec* Vec = (FloatVec*)vec->data;
 
-            if (Vec->size > size) {
-                printf("Can't resize vector, current element count exceeds target size.\n");
-                return false;
-            }
-
-            if (Vec->capacity <= size) {
-                printf("Can't resize vector, current capacity is smaller or the same than target size. Use ExtendVec() instead.\n");
+            if (Vec->size > size || Vec->capacity <= size) {
                 return false;
             }
 
@@ -51,15 +39,9 @@ bool ShrinkVec(void *vec, size_t size, enum VecType type) {
             return false;
         }
         case VEC_CHAR: {
-            CharVec* Vec = (CharVec*)vec;
+            CharVec* Vec = (CharVec*)vec->data;
 
-            if (Vec->size > size) {
-                printf("Can't resize vector, current element count exceeds target size.\n");
-                return false;
-            }
-
-            if (Vec->capacity <= size) {
-                printf("Can't resize vector, current capacity is smaller or the same than target size. Use ExtendVec() instead.\n");
+            if (Vec->size > size || Vec->capacity <= size) {
                 return false;
             }
 
@@ -75,15 +57,9 @@ bool ShrinkVec(void *vec, size_t size, enum VecType type) {
             return false;
         }
         case VEC_STRING: {
-            StrVec* Vec = (StrVec*)vec;
+            StrVec* Vec = (StrVec*)vec->data;
 
-            if (Vec->size > size) {
-                printf("Can't resize vector, current element count exceeds target size.\n");
-                return false;
-            }
-
-            if (Vec->capacity <= size) {
-                printf("Can't resize vector, current capacity is smaller or the same than target size. Use ExtendVec() instead.\n");
+            if (Vec->size > size || Vec->capacity <= size) {
                 return false;
             }
 

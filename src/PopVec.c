@@ -1,54 +1,50 @@
 #include "../include/vectors.h"
 
-void* PopVec(void* vec , enum VecType type) {
-    switch (type) {
+void* PopVec(Vector* vec) {
+    switch (vec->type) {
         case VEC_INT: {
-            IntVec* Vec = (IntVec*)vec;
+            IntVec* Vec = (IntVec*)vec->data;
 
             if (Vec->size == 0) {
-                printf("Vector's size is 0.\n");
                 return NULL;
             }
 
             Vec->size--;
 
-            return GetLastVec(vec, VEC_INT);
+            return GetLastVec(vec);
         }
         case VEC_FLOAT: {
-            FloatVec* Vec = (FloatVec*)vec;
+            FloatVec* Vec = (FloatVec*)vec->data;
 
             if (Vec->size == 0) {
-                printf("Vector's size is 0.\n");
                 return NULL;
             }
 
             Vec->size--;
 
-            return GetLastVec(vec, VEC_FLOAT);
+            return GetLastVec(vec);
         }
         case VEC_CHAR: {
-            CharVec* Vec = (CharVec*)vec;
+            CharVec* Vec = (CharVec*)vec->data;
 
             if (Vec->size == 0) {
-                printf("Vector's size is 0.\n");
                 return NULL;
             }
 
             Vec->size--;
 
-            return GetLastVec(vec, VEC_CHAR);
+            return GetLastVec(vec);
         }
         case VEC_STRING: {
-            StrVec* Vec = (StrVec*)vec;
+            StrVec* Vec = (StrVec*)vec->data;
 
             if (Vec->size == 0) {
-                printf("Vector's size is 0.\n");
                 return NULL;
             }
 
             Vec->size--;
 
-            return GetLastVec(vec , VEC_STRING);
+            return GetLastVec(vec);
         }
         default: return NULL;
     }
