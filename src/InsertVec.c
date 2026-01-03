@@ -2,15 +2,14 @@
 #include <stdint.h>
 #include <string.h>
 
-bool InsertVec(void *vec, void *item, size_t index, enum VecType type) {
-    switch (type) {
+bool InsertVec(Vector* vec, void *item, size_t index) {
+    switch (vec->type) {
         case VEC_INT: {
-            IntVec* Vec = (IntVec*)vec;
+            IntVec* Vec = (IntVec*)vec->data;
 
             if (!Vec || index > Vec->size || index == SIZE_MAX) return false;
 
-            if (Vec->size + 1 > Vec->capacity && !ExtendVec(Vec , Vec->capacity * 2, VEC_INT)) {
-                printf("Failed to insert element to vector.\n");
+            if (Vec->size + 1 > Vec->capacity && !ExtendVec(vec , Vec->capacity * 2)) {
                 return false;
             }
 
@@ -25,12 +24,11 @@ bool InsertVec(void *vec, void *item, size_t index, enum VecType type) {
             return true;
         }
         case VEC_FLOAT: {
-            FloatVec* Vec = (FloatVec*)vec;
+            FloatVec* Vec = (FloatVec*)vec->data;
 
             if (!Vec || index > Vec->size || index == SIZE_MAX) return false;
 
-            if (Vec->size + 1 > Vec->capacity && !ExtendVec(Vec , Vec->capacity * 2, VEC_FLOAT)) {
-                printf("Failed to insert element to vector.\n");
+            if (Vec->size + 1 > Vec->capacity && !ExtendVec(vec , Vec->capacity * 2)) {
                 return false;
             }
 
@@ -45,12 +43,11 @@ bool InsertVec(void *vec, void *item, size_t index, enum VecType type) {
             return true;
         } 
         case VEC_CHAR: {
-            CharVec* Vec = (CharVec*)vec;
+            CharVec* Vec = (CharVec*)vec->data;
 
             if (!Vec || index > Vec->size || index == SIZE_MAX) return false;
 
-            if (Vec->size + 1 > Vec->capacity && !ExtendVec(Vec , Vec->capacity * 2, VEC_CHAR)) {
-                printf("Failed to insert element to vector.\n");
+            if (Vec->size + 1 > Vec->capacity && !ExtendVec(vec , Vec->capacity * 2)) {
                 return false;
             }
 
@@ -65,12 +62,11 @@ bool InsertVec(void *vec, void *item, size_t index, enum VecType type) {
             return true;
         } 
         case VEC_STRING: {
-            StrVec* Vec = (StrVec*)vec;
+            StrVec* Vec = (StrVec*)vec->data;
 
             if (!Vec || index > Vec->size || index == SIZE_MAX) return false;
 
-            if (Vec->size + 1 > Vec->capacity && !ExtendVec(Vec , Vec->capacity * 2, VEC_STRING)) {
-                printf("Failed to insert element to vector.\n");
+            if (Vec->size + 1 > Vec->capacity && !ExtendVec(vec , Vec->capacity * 2)) {
                 return false;
             }
 
@@ -78,7 +74,7 @@ bool InsertVec(void *vec, void *item, size_t index, enum VecType type) {
                 Vec->vec[i] = Vec->vec[i - 1];
             }
 
-            strcpy((char*)item, Vec->vec[index]);
+            Vec->vec[index] = (char*)item;
 
             Vec->size++;
 
