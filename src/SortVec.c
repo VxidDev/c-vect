@@ -31,10 +31,10 @@ int SortVec__CompStr(const void* a, const void* b) {
     return strcmp(sa, sb); 
 }
 
-bool SortVec(void *vec, int(*compare)(const void* , const void*) , enum VecType type) {
-    switch (type) {
+bool SortVec(Vector* vec, int(*compare)(const void* , const void*)) {
+    switch (vec->type) {
         case VEC_INT: {
-            IntVec* Vec = (IntVec*)vec;
+            IntVec* Vec = (IntVec*)vec->data;
             
             if (Vec->size <= 1) return true;
 
@@ -45,7 +45,7 @@ bool SortVec(void *vec, int(*compare)(const void* , const void*) , enum VecType 
             return true;
         }
         case VEC_FLOAT: {
-            FloatVec* Vec = (FloatVec*)vec;
+            FloatVec* Vec = (FloatVec*)vec->data;
 
             if (Vec->size <= 1) return true;
 
@@ -56,7 +56,7 @@ bool SortVec(void *vec, int(*compare)(const void* , const void*) , enum VecType 
             return true;
         }
         case VEC_CHAR: {
-            CharVec* Vec = (CharVec*)vec;
+            CharVec* Vec = (CharVec*)vec->data;
 
             if (Vec->size <= 1) return true;
 
@@ -67,7 +67,7 @@ bool SortVec(void *vec, int(*compare)(const void* , const void*) , enum VecType 
             return true;
         }
         case VEC_STRING: {
-            StrVec* Vec = (StrVec*)vec;
+            StrVec* Vec = (StrVec*)vec->data;
 
             if (Vec->size <= 1) return true;
 
