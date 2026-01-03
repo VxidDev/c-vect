@@ -26,9 +26,10 @@ void* GetItemFromVec(Vector* vec , size_t index);
 ptrdiff_t GetSizeVec(Vector* vec);
 ptrdiff_t GetCapacityVec(Vector* vec);
 
+void ClearVec(Vector* vec);
 void FreeVec(Vector* vec);
 
-void ClearVec(void* vec , enum VecType type);
+
 bool ResetVec(void* vec , enum VecType type);
 bool ShrinkToFitVec(void* vec , enum VecType type);
 bool ShrinkVec(void* vec , size_t size , enum VecType type);
