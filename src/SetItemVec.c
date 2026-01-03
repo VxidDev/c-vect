@@ -2,10 +2,10 @@
 #include <stdint.h>
 #include <string.h>
 
-bool SetItemVec(void *vec, void *item, size_t index, enum VecType type) {
-    switch (type) {
+bool SetItemVec(Vector* vec, void *item, size_t index) {
+    switch (vec->type) {
         case VEC_INT: {
-            IntVec* Vec = (IntVec*)vec;
+            IntVec* Vec = (IntVec*)vec->data;
 
             if (!Vec || index > Vec->size || index == SIZE_MAX) return false;
 
@@ -14,7 +14,7 @@ bool SetItemVec(void *vec, void *item, size_t index, enum VecType type) {
             return true;
         }
         case VEC_FLOAT: {
-            FloatVec* Vec = (FloatVec*)vec;
+            FloatVec* Vec = (FloatVec*)vec->data;
 
             if (!Vec || index > Vec->size || index == SIZE_MAX) return false;
 
@@ -23,7 +23,7 @@ bool SetItemVec(void *vec, void *item, size_t index, enum VecType type) {
             return true;
         }
         case VEC_CHAR: {
-            CharVec* Vec = (CharVec*)vec;
+            CharVec* Vec = (CharVec*)vec->data;
 
             if (!Vec || index > Vec->size || index == SIZE_MAX) return false;
 
@@ -32,11 +32,11 @@ bool SetItemVec(void *vec, void *item, size_t index, enum VecType type) {
             return true;
         }
         case VEC_STRING: {
-            StrVec* Vec = (StrVec*)vec;
+            StrVec* Vec = (StrVec*)vec->data;
 
             if (!Vec || index > Vec->size || index == SIZE_MAX) return false;
 
-            strcpy((char*)item, Vec->vec[index]);
+            Vec->vec[index] = (char*)item;
 
             return true;
         }

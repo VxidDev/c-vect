@@ -21,6 +21,7 @@ bool ExtendVec(Vector* vec , size_t size);
 bool ResetVec(Vector* vec);
 bool ShrinkToFitVec(Vector* vec);
 bool ShrinkVec(Vector* vec , size_t size);
+bool SetItemVec(Vector* vec, void* item, size_t index);
 
 void* GetLastVec(Vector* vec);
 void* PopVec(Vector* vec);
@@ -32,7 +33,6 @@ ptrdiff_t GetCapacityVec(Vector* vec);
 void ClearVec(Vector* vec);
 void FreeVec(Vector* vec);
 
-bool SetItemVec(void* vec, void* item, size_t index, enum VecType type);
 bool ContainsVec(void* vec, void* item, enum VecType type);
 bool SortVec(void* vec, int(*compare)(const void* , const void*) , enum VecType type);
 int SortVec__CompInt(const void* a , const void* b);
