@@ -29,7 +29,6 @@ ptrdiff_t GetCapacityVec(Vector* vec);
 void ClearVec(Vector* vec);
 void FreeVec(Vector* vec);
 
-
 bool ResetVec(void* vec , enum VecType type);
 bool ShrinkToFitVec(void* vec , enum VecType type);
 bool ShrinkVec(void* vec , size_t size , enum VecType type);
