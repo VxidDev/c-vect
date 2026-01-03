@@ -16,10 +16,10 @@ Vector* InitVec(enum VecType type, void* arr , void* arrlen);
 
 bool AppendVec(Vector* Vec , void* item);
 void* GetLastVec(Vector* vec);
+void* PopVec(Vector* vec);
 
 void FreeVec(Vector* vec);
 
-void* PopVec(void* vec , enum VecType type);
 bool RemoveFromVec(void* vec , size_t index , enum VecType type);
 void* GetItemFromVec(void* vec , size_t index , enum VecType type);
 void ClearVec(void* vec , enum VecType type);
