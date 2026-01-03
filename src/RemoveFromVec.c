@@ -1,16 +1,15 @@
 #include "../include/vectors.h"
 
-bool RemoveFromVec(void* vec , size_t index , enum VecType type) {
-    switch (type) {
+bool RemoveFromVec(Vector* vec , size_t index) {
+    switch (vec->type) {
         case VEC_INT: {
-            IntVec* Vec = (IntVec*)vec;
+            IntVec* Vec = (IntVec*)vec->data;
 
             if (Vec->size == 0 || index >= Vec->size) {
-                printf("Index (%zu) out of vector's range.\n" , index);
                 return false;
             }
 
-            for (size_t i = index; i < Vec->size - 1; i++) {
+            for (size_t i = index; i + 1 < Vec->size; ++i) {
                 Vec->vec[i] = Vec->vec[i + 1];
             }
 
@@ -19,14 +18,13 @@ bool RemoveFromVec(void* vec , size_t index , enum VecType type) {
             return true;
         }
         case VEC_CHAR: {
-            CharVec* Vec = (CharVec*)vec;
+            CharVec* Vec = (CharVec*)vec->data;
 
             if (Vec->size == 0 || index >= Vec->size) {
-                printf("Index (%zu) out of vector's range.\n" , index);
                 return false;
             }
 
-            for (size_t i = index; i < Vec->size - 1; i++) {
+            for (size_t i = index; i + 1 < Vec->size; ++i) {
                 Vec->vec[i] = Vec->vec[i + 1];
             }
 
@@ -35,14 +33,13 @@ bool RemoveFromVec(void* vec , size_t index , enum VecType type) {
             return true;
         }
         case VEC_FLOAT: {
-            FloatVec* Vec = (FloatVec*)vec;
+            FloatVec* Vec = (FloatVec*)vec->data;
 
             if (Vec->size == 0 || index >= Vec->size) {
-                printf("Index (%zu) out of vector's range.\n" , index);
                 return false;
             }
 
-            for (size_t i = index; i < Vec->size - 1; i++) {
+            for (size_t i = index; i + 1 < Vec->size; ++i) {
                 Vec->vec[i] = Vec->vec[i + 1];
             }
 
@@ -51,14 +48,13 @@ bool RemoveFromVec(void* vec , size_t index , enum VecType type) {
             return true;
         }
         case VEC_STRING: {
-            StrVec* Vec = (StrVec*)vec;
+            StrVec* Vec = (StrVec*)vec->data;
 
             if (Vec->size == 0 || index >= Vec->size) {
-                printf("Index (%zu) out of vector's range.\n" , index);
                 return false;
             }
 
-            for (size_t i = index; i < Vec->size - 1; i++) {
+            for (size_t i = index; i + 1 < Vec->size; ++i) {
                 Vec->vec[i] = Vec->vec[i + 1];
             }
 
