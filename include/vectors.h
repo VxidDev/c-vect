@@ -15,10 +15,10 @@ enum VecType { VEC_CHAR , VEC_STRING , VEC_INT , VEC_FLOAT };
 Vector* InitVec(enum VecType type, void* arr , void* arrlen);
 
 bool AppendVec(Vector* Vec , void* item);
+void* GetLastVec(Vector* vec);
 
 void FreeVec(Vector* vec);
 
-void* GetLastVec(void* vec , enum VecType type);
 void* PopVec(void* vec , enum VecType type);
 bool RemoveFromVec(void* vec , size_t index , enum VecType type);
 void* GetItemFromVec(void* vec , size_t index , enum VecType type);

@@ -12,7 +12,7 @@ void* PopVec(void* vec , enum VecType type) {
 
             Vec->size--;
 
-            return GetLastVec(vec, VEC_INT);
+            return GetLastVec(vec);
         }
         case VEC_FLOAT: {
             FloatVec* Vec = (FloatVec*)vec;
@@ -24,7 +24,7 @@ void* PopVec(void* vec , enum VecType type) {
 
             Vec->size--;
 
-            return GetLastVec(vec, VEC_FLOAT);
+            return GetLastVec(vec);
         }
         case VEC_CHAR: {
             CharVec* Vec = (CharVec*)vec;
@@ -36,7 +36,7 @@ void* PopVec(void* vec , enum VecType type) {
 
             Vec->size--;
 
-            return GetLastVec(vec, VEC_CHAR);
+            return GetLastVec(vec);
         }
         case VEC_STRING: {
             StrVec* Vec = (StrVec*)vec;
@@ -48,7 +48,7 @@ void* PopVec(void* vec , enum VecType type) {
 
             Vec->size--;
 
-            return GetLastVec(vec , VEC_STRING);
+            return GetLastVec(vec);
         }
         default: return NULL;
     }
