@@ -20,6 +20,8 @@ bool RemoveFromVec(Vector* vec , size_t index);
 void* GetLastVec(Vector* vec);
 void* PopVec(Vector* vec);
 
+ptrdiff_t GetSizeVec(Vector* vec);
+
 void FreeVec(Vector* vec);
 
 void* GetItemFromVec(void* vec , size_t index , enum VecType type);
@@ -28,7 +30,6 @@ bool ResetVec(void* vec , enum VecType type);
 bool ShrinkToFitVec(void* vec , enum VecType type);
 bool ShrinkVec(void* vec , size_t size , enum VecType type);
 bool ExtendVec(void* vec , size_t size , enum VecType type);
-ptrdiff_t GetSizeVec(void* vec , enum VecType type);
 ptrdiff_t GetCapacityVec(void* vec , enum VecType type);
 bool InsertVec(void* vec, void* item, size_t index , enum VecType type);
 bool SetItemVec(void* vec, void* item, size_t index, enum VecType type);
