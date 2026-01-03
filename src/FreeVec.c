@@ -1,37 +1,38 @@
 #include "../include/vectors.h"
 
-void FreeVec(Vector* Vec) {
-    if (!Vec) return;
-    
-    enum VecType type = Vec->type;
-
+void FreeVec(void* vec , enum VecType type) {
     switch (type) {
         case VEC_INT: {
-            IntVec* Array = (IntVec*)Vec->data;
-            free(Array->vec);
+            IntVec* Vec = (IntVec*)vec;
+
+            free(Vec->vec);
+            free(Vec);
 
             break;
         }
         case VEC_FLOAT: {
-            FloatVec* Array = (FloatVec*)Vec->data;
-            free(Array->vec);
+            FloatVec* Vec = (FloatVec*)vec;
+
+            free(Vec->vec);
+            free(Vec);
 
             break;
         }
         case VEC_CHAR: {
-            CharVec* Array = (CharVec*)Vec->data;
-            free(Array->vec);
+            CharVec* Vec = (CharVec*)vec;
+
+            free(Vec->vec);
+            free(Vec);
 
             break;
         }
         case VEC_STRING: {
-            StrVec* Array = (StrVec*)Vec->data;
-            free(Array->vec);
+            StrVec* Vec = (StrVec*)vec;
+
+            free(Vec->vec);
+            free(Vec);
 
             break;
         }
     }
-
-    free(Vec->data);
-    free(Vec);
 }

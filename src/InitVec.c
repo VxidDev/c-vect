@@ -1,197 +1,167 @@
 #include "../include/vectors.h"
-#include <string.h>
+#include <stddef.h>
 
-Vector* InitVec(enum VecType type , void* arr , void* arrlen) {
-    if (!(type >= 0 && type <= 4)) {
-        return NULL;    
-    } 
-
-    Vector* vec = (Vector*)calloc(1 , sizeof(Vector));
-
-    if (!vec) {
-        return NULL;
-    }
-
-    vec->type = type;
-    
-    switch (type) {
-        case VEC_INT:
-            vec->data = (IntVec*)calloc(1 , sizeof(IntVec));
-            break;
-        case VEC_FLOAT:
-            vec->data = (FloatVec*)calloc(1 , sizeof(FloatVec));
-            break;
-        case VEC_CHAR:
-            vec->data = (CharVec*)calloc(1 , sizeof(CharVec));
-            break;
-        case VEC_STRING: 
-            vec->data = (StrVec*)calloc(1 , sizeof(StrVec));
-            break;
-    }
-
-    if (!vec->data) {
-        free(vec);
-        return NULL;
-    }
-
-    void* Vector = vec->data;
+void* InitVec(enum VecType type , void* arr , void* arrlen) {
     switch (type) {
         case VEC_INT: {
-            IntVec* vect = (IntVec*)Vector;
-            vect->vec = (int*)calloc(16 , sizeof(int));
 
-            if (!vect->vec) {
-                free(vec->data);
+            IntVec* vec = (IntVec*)calloc(1 , sizeof(IntVec));
+
+            if (!vec) {
+                printf("Failed to initialize vector.\n");
+                return NULL;
+            }
+
+            vec->vec = (int*)calloc(16 , sizeof(int));
+
+            if (!vec->vec) {
+                printf("Failed to allocate IntVec data\n");
                 free(vec);
                 return NULL;
             }
 
-            vect->size = 0;
-            vect->capacity = 16;
+            vec->capacity = 16;
 
-            break;
-        }
-        case VEC_FLOAT: {
-            FloatVec* vect = (FloatVec*)Vector;
-            vect->vec = (float*)calloc(16 , sizeof(float));
+            // printf("Initialized basic vector.\n");
 
-            if (!vect->vec) {
-                free(vec->data);
-                free(vec);
-                return NULL;
-            }
-
-            vect->size = 0;
-            vect->capacity = 16;
-
-            break;
-        }
-        case VEC_CHAR: {
-            CharVec* vect = (CharVec*)Vector;
-            vect->vec = (char*)calloc(16 , sizeof(char));
-
-            if (!vect->vec) {
-                free(vec->data);
-                free(vec);
-                return NULL;
-            }
-
-            vect->size = 0;
-            vect->capacity = 16;
-
-            break;
-        }
-        case VEC_STRING: {
-            StrVec* vect = (StrVec*)Vector;
-            vect->vec = (char**)calloc(16 , sizeof(char*));
-
-            if (!vect->vec) {
-                free(vec->data);
-                free(vec);
-                return NULL;
-            }
-
-            vect->size = 0;
-            vect->capacity = 16;
-
-            break;
-        }
-    }
-
-    if (arr != NULL && arrlen != NULL) {
-        size_t len = *(size_t*)arrlen;
-
-        switch (type) {
-            case VEC_INT: {
-                IntVec* vect = (IntVec*)Vector;
+            if (arr != NULL && arrlen != NULL) {
                 int* Array = (int*)arr;
+                size_t len = *(int*)arrlen;
 
-                if (len >= vect->capacity) {
-                    void* ptr = realloc(vect->vec , (len + 8) * sizeof(int));
+                // printf("Prepared void* args for work.\n");
 
-                    if (!ptr) {
-                        return vec;
-                    }
-
-                    vect->vec = (int*)ptr;
-                    vect->capacity = len + 8;
+                for (size_t i = 0; i < len; i++) {
+                    AppendVec(vec, (int*)&Array[i], VEC_INT);    
                 }
 
-                memcpy(vect->vec , Array , len * sizeof(int));
-
-                vect->size = len;
-
-                break;
-            }
-            case VEC_FLOAT: {
-                FloatVec* vect = (FloatVec*)Vector;
-                float* Array = (float*)arr;
-
-                if (len >= vect->capacity) {
-                    void* ptr = realloc(vect->vec , (len + 8) * sizeof(float));
-
-                    if (!ptr) {
-                        return vec;
-                    }
-
-                    vect->vec = (float*)ptr;
-                    vect->capacity = len + 8;
+                if (vec->size != len) {
+                    printf("Failed to initialize vector.\n");
+                    return NULL;
                 }
-
-                memcpy(vect->vec , Array , len * sizeof(float));
-
-                vect->size = len;
-                vect->capacity = len > 16 ? len : 16;
-
-                break;
             }
-            case VEC_CHAR: {
-                CharVec* vect = (CharVec*)Vector;
-                char* Array = (char*)arr;
 
-                if (len >= vect->capacity) {
-                    void* ptr = realloc(vect->vec , (len + 8) * sizeof(char));
-
-                    if (!ptr) {
-                        return vec;
-                    }
-
-                    vect->vec = (char*)ptr;
-                    vect->capacity = len + 8;
-                }
-
-                memcpy(vect->vec , Array , len* sizeof(char));
-
-                vect->vec[len] = '\0';
-                vect->size = len;
-                vect->capacity = len + 1 > 16 ? len + 1: 16;
-
-                break;
-            }
-            case VEC_STRING: {
-                StrVec* vect = (StrVec*)Vector;
-                char** Array = (char**)arr;
-
-                if (len >= vect->capacity) {
-                    void* ptr = realloc(vect->vec , (len + 8) * sizeof(char*));
-
-                    if (!ptr) {
-                        return vec;
-                    }
-
-                    vect->vec = (char**)ptr;
-                    vect->capacity = len + 8;
-                }
-
-                memcpy(vect->vec , Array , len * sizeof(char*));
-
-                vect->size = len;
-                vect->capacity = len > 16 ? len : 16;
-
-                break;
-            }
+            return vec;
         }
-    }
 
-    return vec;
+        break;
+        case VEC_FLOAT: {
+            FloatVec* vec = (FloatVec*)calloc(1 , sizeof(FloatVec));
+
+            if (!vec) {
+                printf("Failed to initialize vector.\n");
+                return NULL;
+            }
+
+            vec->vec = (float*)calloc(16 , sizeof(float));
+
+            if (!vec->vec) {
+                printf("Failed to allocate IntVec data\n");
+                free(vec);
+                return NULL;
+            }
+
+            vec->capacity = 16;
+
+            // printf("Initialized basic vector.\n");
+
+            if (arr != NULL && arrlen != NULL) {
+                float* Array = (float*)arr;
+                size_t len = *(int*)arrlen;
+
+                // printf("Prepared void* args for work.\n");
+
+                for (size_t i = 0; i < len; i++) {
+                    AppendVec(vec, (float*)&Array[i], VEC_INT);    
+                }
+
+                if (vec->size != len) {
+                    printf("Failed to initialize vector.\n");
+                    return NULL;
+                }
+            }
+
+            return vec;
+        }
+
+        break;
+        case VEC_STRING: {
+            StrVec* vec = (StrVec*)calloc(1 , sizeof(StrVec));
+
+            if (!vec) {
+                printf("Failed to initialize vector.\n");
+                return NULL;
+            }
+
+            vec->vec = (char**)calloc(16 , sizeof(char*));
+
+            if (!vec->vec) {
+                printf("Failed to allocate IntVec data\n");
+                free(vec);
+                return NULL;
+            }
+
+            vec->capacity = 16;
+
+            // printf("Initialized basic vector.\n");
+
+            if (arr != NULL && arrlen != NULL) {
+                char** Array = (char**)arr;
+                size_t len = *(int*)arrlen;
+
+                // printf("Prepared void* args for work.\n");
+
+                for (size_t i = 0; i < len; i++) {
+                    AppendVec(vec, (char**)&Array[i], VEC_INT);    
+                }
+
+                if (vec->size != len) {
+                    printf("Failed to initialize vector.\n");
+                    return NULL;
+                }
+            }
+
+            return vec;
+        }
+
+        break;
+        case VEC_CHAR: {
+            CharVec* vec = (CharVec*)calloc(1 , sizeof(CharVec));
+
+            if (!vec) {
+                printf("Failed to initialize vector.\n");
+                return NULL;
+            }
+
+            vec->vec = (char*)calloc(16 , sizeof(char));
+
+            if (!vec->vec) {
+                printf("Failed to allocate IntVec data\n");
+                free(vec);
+                return NULL;
+            }
+
+            vec->capacity = 16;
+
+            // printf("Initialized basic vector.\n");
+
+            if (arr != NULL && arrlen != NULL) {
+                char* Array = (char*)arr;
+                size_t len = *(int*)arrlen;
+
+                // printf("Prepared void* args for work.\n");
+
+                for (size_t i = 0; i < len; i++) {
+                    AppendVec(vec, (char*)&Array[i], VEC_INT);    
+                }
+
+                if (vec->size != len) {
+                    printf("Failed to initialize vector.\n");
+                    return NULL;
+                }
+            }
+
+            return vec;
+        }
+        default: return NULL;
+    }
 }
