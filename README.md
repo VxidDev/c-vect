@@ -79,6 +79,7 @@ gcc main.c -lvectors -o app
 | * SetItemVec(Vector* vec, void* item, size_t index)        | ok = SetItemVec(Vector, &(int){7}, 7) | Change replace value of specified index with given item. Returns ```true``` if success, otherwise returns ```false```.                     |
 | * SortVec(Vector* vec, int(* compare)(const void* , const void*))| ok = SortVec(Vector , NULL)     | Sort vector via quick sort with pre-made or your own criteria. Returns ```true``` if success, otherwise returns ```false```.               |
 | * ContainsVec(Vector* vec , void* item)                    | ok = ContainsVec(Vector , &(int){3}   | Check if vector contains given item. Return ```true``` if does, otherwise returns ```false```. Algorithm complexity O(n).                  |
+| * ForEachVec(Vector* vec , void (*func)(void* item , size_t idx)) | ForEachVec(Vector , PrintItem) | Repeat given instruction for each item in the vector. |
 
 Types: VEC_INT, VEC_FLOAT, VEC_CHAR, VEC_STRING
 

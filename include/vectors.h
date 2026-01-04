@@ -32,6 +32,7 @@ void* GetItemFromVec(Vector* vec , size_t index);
 ptrdiff_t GetSizeVec(Vector* vec);
 ptrdiff_t GetCapacityVec(Vector* vec);
 
+void ForEachVec(Vector* vec , void (*func)(void* item , size_t idx));
 void ClearVec(Vector* vec);
 void FreeVec(Vector* vec);
 
