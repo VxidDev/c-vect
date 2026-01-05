@@ -31,7 +31,8 @@ SRCS = src/InitVec.c \
 	   src/FilterVec.c \
 	   src/MapVec.c \
 	   src/ReduceVec.c \
-	   src/SumVec.c
+	   src/SumVec.c \
+	   src/MaxVec.c
 
 OBJS = $(SRCS:.c=.o)
 
