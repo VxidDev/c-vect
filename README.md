@@ -58,7 +58,7 @@ gcc main.c -lvectors -o app
 
 ## API
 '*' before a function name means function is re-factored and now usable.
-
+'!' before a functions name means function may be broken or unusable and overall not recommended for usage.
 | Function                                                   | Usage                                 | Description                                                                                                                                |
 | ---------------------------------------------------------- | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------|
 | * InitVec(enum VecType type, void arr, void arrlen)**      | vec = InitVec(VEC_INT, arr, &arrlen)  | Initialize a new vector with optional source array and length. If arr and arrlen is NULL, creates an empty Vector* (default capacity = 16).|
@@ -81,6 +81,8 @@ gcc main.c -lvectors -o app
 | * ContainsVec(Vector* vec , void* item)                    | ok = ContainsVec(Vector , &(int){3}   | Check if vector contains given item. Return ```true``` if does, otherwise returns ```false```. Algorithm complexity O(n).                  |
 | * ForEachVec(Vector* vec , void (* func)(void* item , size_t idx)) | ForEachVec(Vector , PrintItem) | Repeat given instruction for each item in the vector. |
 | * IndexOfVec(Vector* vec , void* item) | idx = IndexOfVec(Vector , &(int){3}) | (ptrdiff) Return index of given item, otherwise return -1. |
+| * FrontVec(Vector* vec) | front = FrontVec(Vector) | Returns pointer to first element. |
+| !* BackVec(Vector* vec) | back = BackVec(Vector) | Returns pointer to last element. |
 
 Types: VEC_INT, VEC_FLOAT, VEC_CHAR, VEC_STRING
 

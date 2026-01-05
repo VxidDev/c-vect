@@ -9,10 +9,10 @@ ptrdiff_t GetSizeVec(Vector *vec) {
             return ((const FloatVec*)vec->data)->size;
         }
         case VEC_STRING: {
-            return ((const FloatVec*)vec->data)->size;
+            return ((const StrVec*)vec->data)->size;
         }
         case VEC_CHAR: {
-            return ((const FloatVec*)vec->data)->size;
+            return ((const CharVec*)vec->data)->size;
         }
         default: return -1;
     }

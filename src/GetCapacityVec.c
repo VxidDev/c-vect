@@ -9,10 +9,10 @@ ptrdiff_t GetCapacityVec(Vector* vec) {
             return ((const FloatVec*)vec->data)->capacity;
         }
         case VEC_STRING: {
-            return ((const FloatVec*)vec->data)->capacity;
+            return ((const StrVec*)vec->data)->capacity;
         }
         case VEC_CHAR: {
-            return ((const FloatVec*)vec->data)->capacity;
+            return ((const CharVec*)vec->data)->capacity;
         }
         default: return -1;
     }

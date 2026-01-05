@@ -28,6 +28,8 @@ bool ContainsVec(Vector* vec, void* item);
 void* GetLastVec(Vector* vec);
 void* PopVec(Vector* vec);
 void* GetItemFromVec(Vector* vec , size_t index);
+void* FrontVec(Vector* vec);
+void* BackVec(Vector* vec);
 
 ptrdiff_t GetSizeVec(Vector* vec);
 ptrdiff_t GetCapacityVec(Vector* vec);
