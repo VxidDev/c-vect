@@ -13,6 +13,7 @@ enum VecType { VEC_CHAR , VEC_STRING , VEC_INT , VEC_FLOAT };
 #include "BaseVec.h"
 
 Vector* InitVec(enum VecType type, void* arr , void* arrlen);
+Vector* FilterVec(Vector* vec , bool (*func)(void* item , void* ctx) , void* ctx);
 
 bool AppendVec(Vector* Vec , void* item);
 bool RemoveFromVec(Vector* vec , size_t index);

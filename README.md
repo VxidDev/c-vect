@@ -83,6 +83,7 @@ gcc main.c -lvectors -o app
 | * IndexOfVec(Vector* vec , void* item) | idx = IndexOfVec(Vector , &(int){3}) | (ptrdiff) Return index of given item, otherwise return -1. |
 | * FrontVec(Vector* vec) | front = FrontVec(Vector) | Returns pointer to first element. |
 | !* BackVec(Vector* vec) | back = BackVec(Vector) | Returns pointer to last element. |
+| * FilterVec(Vector* vec , bool (* func)(void* , void*) , void* ctx) | FilterVec(Vector , is_even , NULL) | Remove items which dont match criteria from given vector. |
 
 Types: VEC_INT, VEC_FLOAT, VEC_CHAR, VEC_STRING
 
