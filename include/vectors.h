@@ -44,6 +44,7 @@ void FreeVec(Vector* vec);
 
 void* SumVec(Vector* vec);
 void* MaxVec(Vector* vec);
+void* MinVec(Vector* vec);
 
 int SortVec__CompInt(const void* a , const void* b);
 int SortVec__CompFloat(const void* a, const void* b);

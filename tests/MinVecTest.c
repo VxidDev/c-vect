@@ -3,36 +3,36 @@
 #include <stdlib.h>
 
 int main(void) {
-    // Test 1: Integer Vector Sum
+    // Test 1: Integer Vector Min
     printf("--- Test 1: VEC_INT ---\n");
-    int int_data[] = {10, 20, 30, 40};
-    size_t int_len = 4;
+    int int_data[] = {10, 20, 5, 40, 15};
+    size_t int_len = 5;
     Vector* vec_int = InitVec(VEC_INT, int_data, &int_len);
     
     if (vec_int) {
-        int* result = (int*)SumVec(vec_int);
+        int* result = (int*)MinVec(vec_int);
         if (result) {
-            printf("Sum: %d (Expected: 100)\n", *result);
+            printf("Min: %d (Expected: 5)\n", *result);
         } else {
-            printf("SumVec returned NULL for VEC_INT.\n");
+            printf("MinVec returned NULL for VEC_INT.\n");
         }
         FreeVec(vec_int);
     } else {
         printf("Failed to initialize VEC_INT.\n");
     }
 
-    // Test 2: Float Vector Sum
+    // Test 2: Float Vector Min
     printf("\n--- Test 2: VEC_FLOAT ---\n");
-    float float_data[] = {1.5f, 2.5f, 3.5f};
-    size_t float_len = 3;
+    float float_data[] = {1.5f, 2.5f, 0.8f, 3.5f, 2.1f};
+    size_t float_len = 5;
     Vector* vec_float = InitVec(VEC_FLOAT, float_data, &float_len);
 
     if (vec_float) {
-        float* result = (float*)SumVec(vec_float);
+        float* result = (float*)MinVec(vec_float);
         if (result) {
-            printf("Sum: %.2f (Expected: 7.50)\n", *result);
+            printf("Min: %.2f (Expected: 0.80)\n", *result);
         } else {
-            printf("SumVec returned NULL for VEC_FLOAT (Not implemented yet?).\n");
+            printf("MinVec returned NULL for VEC_FLOAT.\n");
         }
         FreeVec(vec_float);
     } else {
@@ -43,11 +43,11 @@ int main(void) {
     printf("\n--- Test 3: Empty VEC_INT ---\n");
     Vector* vec_empty = InitVec(VEC_INT, NULL, NULL);
     if (vec_empty) {
-        int* result = (int*)SumVec(vec_empty);
+        int* result = (int*)MinVec(vec_empty);
         if (result) {
-            printf("Sum: %d (Expected: 0)\n", *result);
+            printf("Min: %d (Unexpected)\n", *result);
         } else {
-            printf("SumVec returned NULL for empty vector.\n");
+            printf("MinVec returned NULL for empty vector (Expected).\n");
         }
         FreeVec(vec_empty);
     }
@@ -58,11 +58,11 @@ int main(void) {
     size_t str_len = 2;
     Vector* vec_str = InitVec(VEC_STRING, str_data, &str_len);
     if (vec_str) {
-        void* result = SumVec(vec_str);
+        void* result = MinVec(vec_str);
         if (result == NULL) {
-            printf("SumVec correctly returned NULL for VEC_STRING.\n");
+            printf("MinVec correctly returned NULL for VEC_STRING.\n");
         } else {
-            printf("SumVec returned non-NULL for VEC_STRING.\n");
+            printf("MinVec returned non-NULL for VEC_STRING.\n");
         }
         FreeVec(vec_str);
     }

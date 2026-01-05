@@ -6,7 +6,7 @@ void* SumVec(Vector* vec) {
 
     switch (vec->type) {
         case VEC_INT: {
-            int* result = calloc(1 , sizeof(int));
+            int* result = (int*)GetItemFromVec(vec, 0);
             for (ptrdiff_t i = 0; i < size; i++) {
                 *result += *(int*)GetItemFromVec(vec, i);
             }
@@ -14,7 +14,7 @@ void* SumVec(Vector* vec) {
             return result;
         }
         case VEC_FLOAT: {
-            float* result = calloc(1 , sizeof(float));
+            float* result = (float*)GetItemFromVec(vec, 0);
             for (ptrdiff_t i = 0; i < size; i++) {
                 *result += *(float*)GetItemFromVec(vec, i);
             }

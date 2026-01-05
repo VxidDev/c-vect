@@ -13,7 +13,6 @@ int main(void) {
         int* result = (int*)MaxVec(vec_int);
         if (result) {
             printf("Max: %d (Expected: 40)\n", *result);
-            free(result);
         } else {
             printf("MaxVec returned NULL for VEC_INT.\n");
         }
@@ -32,7 +31,6 @@ int main(void) {
         float* result = (float*)MaxVec(vec_float);
         if (result) {
             printf("Max: %.2f (Expected: 3.50)\n", *result);
-            free(result);
         } else {
             printf("MaxVec returned NULL for VEC_FLOAT.\n");
         }
@@ -48,7 +46,6 @@ int main(void) {
         int* result = (int*)MaxVec(vec_empty);
         if (result) {
             printf("Max: %d (Unexpected)\n", *result);
-            free(result);
         } else {
             printf("MaxVec returned NULL for empty vector (Expected).\n");
         }
