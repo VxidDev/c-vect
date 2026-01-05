@@ -10,7 +10,7 @@ Features
 
 ## 🛑 Project Status
 
-**c-vect v2.3 is feature-complete.** Core dynamic vector + FP pipeline (Map/Filter/Reduce/Sort).
+**c-vect is feature-complete.** Core dynamic vector + FP pipeline (Map/Filter/Reduce/Sort).
 
 ### New Features
 - 💰 **Sponsor** for priority (Ko-fi profile)
