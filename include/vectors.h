@@ -32,6 +32,7 @@ void* PopVec(Vector* vec);
 void* GetItemFromVec(Vector* vec , size_t index);
 void* FrontVec(Vector* vec);
 void* BackVec(Vector* vec);
+void* ReduceVec(Vector* vec , void* (*reducer)(void* , void* , void*) , void* ctx , void* init);
 
 ptrdiff_t GetSizeVec(Vector* vec);
 ptrdiff_t GetCapacityVec(Vector* vec);
