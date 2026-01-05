@@ -86,6 +86,7 @@ gcc main.c -lvectors -o app
 | * FilterVec(Vector* vec , bool (* func)(void* , void*) , void* ctx) | FilterVec(Vector , is_even , NULL) | Remove items which dont match criteria from given vector. |
 | * MapVec(Vector* vec , void (* func)(void* , void*) , void* ctx) | MapVec(Vector , square , NULL) | Apply given function to each item in vector|
 | * ReduceVec(Vector* vec , void* (* reducer)(void* , void* , void*) ) | ReduceVec(Vector , sum , NULL , &InitRslt) | Reduce given vector to a single value. |
+| * SumVec(Vector* vec) | int* result = (int*)SumVec(Vector) | Returns *calloc()'d* sum of vector for float and int VecTypes. Remember to always free the result to avoid memory leakage. |  
 
 Types: VEC_INT, VEC_FLOAT, VEC_CHAR, VEC_STRING
 

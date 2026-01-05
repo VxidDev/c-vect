@@ -42,6 +42,8 @@ void ForEachVec(Vector* vec , void (*func)(void* item , size_t idx));
 void ClearVec(Vector* vec);
 void FreeVec(Vector* vec);
 
+void* SumVec(Vector* vec);
+
 int SortVec__CompInt(const void* a , const void* b);
 int SortVec__CompFloat(const void* a, const void* b);
 int SortVec__CompChar(const void* a, const void* b);
