@@ -31,7 +31,7 @@ int main() {
         return 1;
     }
 
-    for (size_t i = 0; i < Data->size; i++) { // Print vector's data
+    for (ptrdiff_t i = 0; i < GetSizeVec(IntVector); i++) { // Print vector's data
          printf("Item @ %zu -> %i\n" , i , GetItemFromVec(IntVector , i));
     }
     
